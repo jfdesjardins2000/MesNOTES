@@ -131,21 +131,42 @@ npx ng serve
 
 ```json
 {
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Angular Debug",
+      "name": "npx ng serve",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}"
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/"
+    },
+    {
+      "name": "npx ng test",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
     }
   ]
 }
 ```
+2. Modifie le début fichier `package.json` :
+```json
+{
+  "name": "mon-app.ui",
+  "version": "0.0.1",
+  "scripts": {
+    "ng": "ng",
+    "start": "npx ng serve",
+    "build": "npx ng build",
+    "watch": "npx ng build --watch --configuration development",
+    "test": "npx ng test"    
+  },...
+```
 
-2. Installe l’extension **Debugger for Chrome** dans VS Code (ou Edge selon ton navigateur)
-3. Lance le debug via `F5` ou l’onglet "Run and Debug"
+3. Installe l’extension **Debugger for Chrome** dans VS Code (ou Edge selon ton navigateur)
+4. Lance le debug via `F5` ou l’onglet "Run and Debug"
 
 ---
 
