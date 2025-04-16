@@ -17,12 +17,13 @@ Command | Description
 `nvm install node` | Installs the latest release of node
 `nvm install 14.7.0` | Installs a specific version
 `nvm use 12.3` | Uses a specific version of Node
+`node -v > .nvmrc` | Creates an nvm configuration file
 `nvm use` | Uses the version specified in the `.nvmrc` file
 `nvm current` | Displays active version
 `nvm ls` | Lists the installed versions
 `nvm ls available` | Only show LTS (long-term support) versions
 `nvm alias default 18.12` | Sets a default Node version to be used in any new shell (this refers to the latest installed v18.12.x version of node)
-`node -v > .nvmrc` | Creates an nvm configuration file
+
 `nvm on` | on:Enable / off:desable
 `nvm uninstall 17.0.1`| uninstall a version of node
 
