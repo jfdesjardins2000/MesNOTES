@@ -131,7 +131,6 @@ npx ng serve
 
 ```json
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
@@ -162,7 +161,7 @@ npx ng serve
     "build": "npx ng build",
     "watch": "npx ng build --watch --configuration development",
     "test": "npx ng test"    
-  },...
+  }
 ```
 
 3. Installe l’extension **Debugger for Chrome** dans VS Code (ou Edge selon ton navigateur)
