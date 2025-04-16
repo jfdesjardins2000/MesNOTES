@@ -23,7 +23,6 @@ Command | Description
 `nvm ls` | Lists the installed versions
 `nvm ls available` | Only show LTS (long-term support) versions
 `nvm alias default 18.12` | Sets a default Node version to be used in any new shell (this refers to the latest installed v18.12.x version of node)
-
 `nvm on` | on:Enable / off:desable
 `nvm uninstall 17.0.1`| uninstall a version of node
 
