@@ -128,10 +128,35 @@
       "Microsoft.AspNetCore": "Warning"
     }
   },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+        }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": ".\\Log\\MonApp.API-.log",
+          "rollingInterval": "Day",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+        }
+      }
+    ]
+  },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "MyAppDb": "Data Source=C:\\NewAPI\\MyAppDb.sqlite",
-    "MyAppAuthDb": "Data Source=C:\\NewAPI\\MyAppAuthDb.sqlite"
+    "MyAppDb": "Data\\MonAppDb.sqlite",
+    "MyAppAuthDb": "Data\\MonAppAuthDb.sqlite"
   },
   "JWT": {
     "Audience": "https://localhost:7252",
@@ -141,8 +166,6 @@
 }
 ```
 
-
-
 * Read connection string in Program.cs file class:
 
 ```csharp
@@ -150,12 +173,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 // Récupérer le chemin depuis appsettings.json
-string? connectionString = builder.ConfiguratioGetConnectionString("MyAppDb");
-builder.Services.AddDbContext<NZWalksDbContex(options => options.UseSqlite(connectionString))
+// Résoudre la chaîne de connexion SQLite
+string contentRootPath = builder.Environment.ContentRootPath;
+string connStr = builder.Configuration.GetConnectionString"MyAppDb");
+builder.Services.AddDbContext<NZWalksDbContex(options => options.UseSqlite($"Data Source={Path.Combine(contentRootPath, connStr)}"))
 
 // Configurer la chaîne de connexion pour la bd SQLite Authentication
-string? authConnectionString = builder.ConfiguratioGetConnectionString("MyAppAuthDb");
-builder.Services.AddDbContext<NZWalksAuthDbContex(options => options.UseSqlite(authConnectionString));
+string authConnStr = builder.Configuration.GetConnectionString"MyAppAuthDb");
+builder.Services.AddDbContext<NZWalksDbContex(options => options.UseSqlite($"Data Source={Path.Combine(contentRootPath, authConnStr)}"))
 ```
 * Enable Dependency Injection on : `DbContext Class`
 
