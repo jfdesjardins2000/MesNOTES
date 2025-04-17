@@ -1,4 +1,4 @@
-# 📚 aspnet-sandbox — Dépôt pédagogique
+# 📚 Dépôt pédagogique
 
 ![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)
 [Voir la politique de sécurité ➜](./SECURITY.md)
