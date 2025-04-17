@@ -167,6 +167,12 @@ npx ng serve
 3. Installe l’extension **Debugger for Chrome** dans VS Code (ou Edge selon ton navigateur)
 4. Lance le debug via `F5` ou l’onglet "Run and Debug"
 
+
+---
+
+## 🔄 Étape 11 – Ajouter la solution dans GitHub
+Consulter la page : **Dépôt pédagogique** (https://github.com/jfdesjardins2000/MesNOTES/tree/main/GithubUnLicence) pour Ajouter une licence libre (The Unlicense).
+
 ---
 
 ## ✅ Tu es prêt à coder 🚀
