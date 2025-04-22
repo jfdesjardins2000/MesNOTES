@@ -17,7 +17,7 @@ Command | Description
 `nvm --version` | Check if `nvm` is installed
 `nvm install node` | Installs the latest release of node
 `nvm install 14.7.0` | Installs a specific version
-`nvm use 12.3` | Uses a specific version of Node
+`nvm use 12.3` | npx ng g c header --flatUses a specific version of Node
 `node -v > .nvmrc` | Creates an nvm configuration file
 `nvm use` | Uses the version specified in the `.nvmrc` file
 `nvm current` | Displays active version
@@ -75,23 +75,11 @@ cd nom-du-projet
 npx ng version
 ```
 
----
-
 ## 💻 Étape 5 – Ouvrir le projet dans VS Code
 
 ```bash
 code .
 ```
-
-
-🧪 Ajouter des fonctionnalités (facultatif)
-Ouvre la fenêtre Terminal
-
-```bash
-npx ng generate component ma-page
-npx ng generate service mon-service
-```
-
 🏗 Structure typique générée
 ```bash
 nom-du-projet/
@@ -160,10 +148,64 @@ npx ng serve
 3. Installe l’extension **Debugger for Chrome** dans VS Code (ou Edge selon ton navigateur)
 4. Lance le debug via `F5` ou l’onglet "Run and Debug"
 
+---
+
+## 🧪 Étape 8 - Commandes Angular utiles
+Ouvre la fenêtre Terminal
+
+## Génération de composants et services avec Angular CLI
+
+### Composant avec dossier dédié
+```bash
+# Génère un composant Angular dans un nouveau dossier "ma-page"
+npx ng generate component ma-page
+```
+
+### Service Angular
+```bash
+# Génère un service Angular nommé "mon-service" (fichiers créés dans src/app)
+npx ng generate service mon-service
+```
+
+### Composant sans sous-dossier
+```bash
+# Génère un composant "header" sans créer de sous-dossier (fichiers dans le dossier courant)
+npx ng generate component header --flat
+```
+
+### Simulation (dry run) d’un composant sans sous-dossier
+```bash
+# Simule la génération du composant "mon-composant" sans créer de dossier
+# (affiche les fichiers qui seraient créés, sans rien modifier)
+npx ng generate component mon-composant --flat --dry-run
+```
 
 ---
 
-## 🔄 Étape 8 – Ajouter la solution dans GitHub
+## Abréviations pratiques
+
+| Longue option              | Abrégé  |
+|---------------------------|---------|
+| `generate`                | `g`     |
+| `component`               | `c`     |
+| `service`                 | `s`     |
+| `--flat`                  | `-f`    |
+| `--dry-run`               | `-d`    |
+
+### Exemple avec abréviations :
+```bash
+npx ng g c header -f -d
+```
+
+> 💡 Utile pour tester une commande sans rien créer.
+
+
+
+
+
+---
+
+## 🔄 Étape 9 – Ajouter la solution dans GitHub
 Consulter la page : **Dépôt pédagogique** (https://github.com/jfdesjardins2000/MesNOTES/tree/main/GithubUnLicence) pour Ajouter une licence libre (The Unlicense).
 
 ---
@@ -177,6 +219,7 @@ Consulter la page : **Dépôt pédagogique** (https://github.com/jfdesjardins200
 - `npx` permet d’utiliser `ng` sans installation globale
 - Angular CLI cherche `angular.json` pour fonctionner
 - Ton `node_modules/.bin` contient tous les exécutables locaux (dont `ng`)
+
 
 ## Angular cheatsheet
 ![Angular cheatsheet](images/angular-cli-cheat-sheet.9X-IsgXf_yph9l.webp)
