@@ -83,6 +83,27 @@ npx ng version
 code .
 ```
 
+
+🧪 Ajouter des fonctionnalités (facultatif)
+Ouvre la fenêtre Terminal
+
+```bash
+npx ng generate component ma-page
+npx ng generate service mon-service
+```
+
+🏗 Structure typique générée
+```bash
+nom-du-projet/
+├── src/
+│   ├── app/
+│   │   ├── app.component.ts
+│   │   └── ...
+├── angular.json
+├── package.json
+└── tsconfig.json
+```
+
 ---
 
 ## 🐞 Étape 6 – Lancer la compilation et le serveur Angular en mode debug
