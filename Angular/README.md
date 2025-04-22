@@ -39,7 +39,7 @@ Command | Description
 
 ---
 
-## 🧩 Étape 1 – Créer ton dossier de projet
+## 🧩 Étape 1 – Créer un dossier de projet
 
 ```bash
 mkdir mon-projet-angular
@@ -48,65 +48,36 @@ cd mon-projet-angular
 
 ---
 
-## 🧬 Étape 2 – Créer un fichier `.nvmrc` (optionnel mais recommandé)
+## 🔄 Étape 2 – Activer la bonne version de Node via `nvm`
 
+par exemple, pour utiliser node v18.20.8
 ```bash
-echo 18.19.0 > .nvmrc
+nvm install 18.20.8
+nvm use 18.20.8
 ```
-
-Cela sert à indiquer la version de Node à utiliser dans ce projet.
-
 ---
 
-## 🔄 Étape 3 – Activer la bonne version de Node via `nvm`
+## 🧱 Étape 3 – Créer un projet Angular (qui va inclure Angular CLI) via npx  **(en local)**
 
 ```bash
-nvm install 18.19.0
-nvm use 18.19.0
-```
+pour une version spécifique (recommandé):                   npx @angular/cli@18 new nom-du-projet
 
-💡 Vérifie avec `node -v`
-
----
-
-## 📦 Étape 4 – Initialiser un projet Node
-
-```bash
-npm init -y
-```
-
----
-
-## 🧱 Étape 5 – Installer Angular CLI **(en local)**
-
-```bash
-pour une version spécifique (recommandé):                   npm install --save-dev @angular/cli@18
 pour installer la derniere version:                         npm install --save-dev @angular/cli
 pour installer Angular CLI globalement (non recommandé):    npm install -g @angular/cli
-poura le répertoire où les packages globaux sont installés: npm root -g
+pour savoir où le répertoire où les packages globaux sont installés: npm root -g
 ```
-
 ---
 
-## 🛠️ Étape 6 – Créer un nouveau projet Angular (dans le dossier courant)
+## 🧪 Étape 4 – Vérifier le fonctionnement de la CLI Angular
 
 ```bash
-npx ng new . --skip-git --skip-install=false --strict
-```
-
-> Si tu veux créer le projet dans un sous-dossier : `npx ng new nom-du-projet`
-
----
-
-## 🧪 Étape 7 – Vérifie le fonctionnement de la CLI Angular
-
-```bash
+cd nom-du-projet
 npx ng version
 ```
 
 ---
 
-## 💻 Étape 8 – Ouvrir le projet dans VS Code
+## 💻 Étape 5 – Ouvrir le projet dans VS Code
 
 ```bash
 code .
@@ -114,9 +85,10 @@ code .
 
 ---
 
-## 🐞 Étape 9 – Lancer le serveur Angular en mode debug
+## 🐞 Étape 6 – Lancer la compilation et le serveur Angular en mode debug
 
 ```bash
+npx ng build
 npx ng serve
 ```
 
@@ -125,7 +97,7 @@ npx ng serve
 
 ---
 
-## 🐛 Étape 10 – Déboguer dans VS Code
+## 🐛 Étape 7 – Déboguer dans VS Code
 
 1. Crée un fichier `.vscode/launch.json` :
 
@@ -170,7 +142,7 @@ npx ng serve
 
 ---
 
-## 🔄 Étape 11 – Ajouter la solution dans GitHub
+## 🔄 Étape 8 – Ajouter la solution dans GitHub
 Consulter la page : **Dépôt pédagogique** (https://github.com/jfdesjardins2000/MesNOTES/tree/main/GithubUnLicence) pour Ajouter une licence libre (The Unlicense).
 
 ---
