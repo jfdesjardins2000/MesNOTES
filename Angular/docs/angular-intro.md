@@ -1,7 +1,10 @@
 
+# Introduction et installation
+
+
+
 ## Installer nvm (Node Version Manager)
 
-<!-- ![nvm-install](/images/nvm-install.png) -->
 ![nvm-install](../images/nvm-install.png)
 
 1.	Va sur : https://github.com/coreybutler/nvm-windows/releases
