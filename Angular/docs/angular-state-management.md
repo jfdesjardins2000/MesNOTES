@@ -97,11 +97,11 @@ ng add @ngrx/store
 
 ---
 
-## Elf : une alternative moderne et légère
+## Elf : une alternative moderne et légère ![elf](../images/elf.png)
 
-Elf est une bibliothèque de gestion d’état réactive, **inspirée par Akita** mais plus moderne, légère et maintenue par les créateurs de `ngneat`.
+[Elf](https://github.com/ngneat/elf) est une bibliothèque de gestion d’état réactive, **inspirée par Akita** mais plus moderne, légère et maintenue par les créateurs de `ngneat`.
 
-![elf](../images/elf.png)
+
 
 ### Avantages :
 
@@ -160,5 +160,3 @@ export const counter$ = counterStore.pipe(select(state => state.count));
 💡 Conseil : choisis une solution adaptée à la **taille de ton application**, à ton **équipe** et à ton **niveau de complexité**.
 
 ---
-
-➡️ Je peux t’aider à implémenter l’une de ces solutions dans ton projet actuel si tu veux !
