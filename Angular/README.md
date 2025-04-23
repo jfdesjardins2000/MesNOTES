@@ -16,8 +16,11 @@ Voici les sections disponibles :
 7. [Services et Injection de dépendances](docs/angular-services.md)
 8. [Communication entre composants](docs/angular-component-communication.md)
 9. [Les directives - Composants, structurelles, d'attribut](docs/angular-custom-directives-guide.md)
-- [Observables (RxJS) et Subscriptions](docs/angular-observables-vs-promises.md)
-- [Interceptors et Guards](docs/angular-interceptors-guards.md)
+10. [Pipes](docs/angular-pipes.md)
+11. [Observables (RxJS) et Subscriptions](docs/angular-observables-vs-promises.md)
+12. [Interceptors et Guards](docs/angular-interceptors-guards.md)
+13. [Tests](docs/angular-tests.md)
+14. [Jests Testing Framework](docs/angular-tests-jest.md)
 
 
 
@@ -25,7 +28,7 @@ Voici les sections disponibles :
 
 ## 📌 Notes utiles
 
-- `npx` permet d’utiliser `ng` sans installation globale
+- Favoriser `npx` car cela permet d’utiliser `ng` **sans installation globale**
 - Angular CLI cherche `angular.json` pour fonctionner
 - Ton `node_modules/.bin` contient tous les exécutables locaux (dont `ng`)
 
