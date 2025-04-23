@@ -21,7 +21,7 @@ Voici les sections disponibles :
 12. [Interceptors et Guards](docs/angular-interceptors-guards.md)
 13. [Tests](docs/angular-tests.md)
 14. [Jests Testing Framework](docs/angular-tests-jest.md)
-
+15. [Gestion d'état (State Management) dans Angular](docs/angular-state-management.md)
 
 
 ---

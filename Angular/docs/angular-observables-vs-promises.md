@@ -58,6 +58,7 @@ async function doSomething() {
 - **Pas de manipulation avancée** : Les promesses offrent des capacités limitées pour transformer ou combiner des flux de données.
 
 ### Observables ([RxJS](https://rxjs.dev/guide/observable))
+![rxjs](../images/rxjs.jpg)
 
 Les Observables sont au cœur de la programmation réactive utilisée par Angular, fournis par la bibliothèque RxJS.
 
