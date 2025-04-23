@@ -58,8 +58,10 @@ Cette approche fonctionne bien pour des états simples, mais ne résout pas tous
 Angular s'intègre parfaitement avec RxJS, qui permet une gestion d'état réactive grâce aux observables.
 
 ### Différence entre **Subject** et **BehaviorSubject** dans RxJS
-[RxJs Subject vs Behaviorsubject](https://writtenforcoders.com/blog/rxjs-subject-vs-behaviorsubject)
+
 ![rxjs-subject-vs-behaviorsubjectxJs](../images/rxjs-behaviorsubject.png)
+
+[RxJs Subject vs Behaviorsubject](https://writtenforcoders.com/blog/rxjs-subject-vs-behaviorsubject)
 
 **Différence entre Subject et BehaviorSubject dans RxJS**
 La principale différence entre un Subject et un BehaviorSubject réside dans leur comportement quant à la valeur initiale et la gestion des abonnements:
