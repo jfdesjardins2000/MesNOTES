@@ -457,7 +457,7 @@ Le choix d'une solution de gestion d'état dépend de plusieurs facteurs :
 
 | Approche | Complexité | Taille d'application | Avantages | Inconvénients |
 |----------|------------|----------------------|-----------|---------------|
-| Services + RxJS | Faible | Petite à moyenne | Simple, natif à Angular | Limité pour applications complexes |
+| Services + RxJS (BehaviorSubject) | Faible | Petite à moyenne | Simple, natif à Angular | Limité pour applications complexes |
 | NgRx | Élevée | Grande | Robuste, traçable, structuré | Verbeux, courbe d'apprentissage |
 | Component Store | Moyenne | Moyenne | Équilibre entre simplicité et structure | Moins puissant que NgRx complet |
 | NGXS | Moyenne | Moyenne à grande | API plus simple que NgRx | Moins mature que NgRx |
