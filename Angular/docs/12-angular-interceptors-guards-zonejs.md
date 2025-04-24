@@ -24,6 +24,8 @@ Avant Angular 15, les guards étaient principalement implémentés comme des cla
 4. **CanLoad**: Détermine si un module peut être chargé paresseusement
 5. **Resolve**: Pré-charge des données avant d'activer la route
 
+![route-guards](../images/route-guards.png)
+
 ### Implémentation Traditionnelle avec NgModule
 
 Avec l'approche NgModule, les guards étaient définis comme des classes avec des interfaces:
@@ -700,3 +702,139 @@ L'évolution des guards et interceptors dans Angular, passant des classes aux fo
 - **Apprentissage facilité**: Concepts plus simples à comprendre pour les nouveaux développeurs
 
 Bien que le support des implémentations basées sur les classes reste présent pour la compatibilité descendante, adopter l'approche fonctionnelle pour les nouveaux développements ou lors des migrations est désormais recommandé. Cette transition s'aligne parfaitement avec l'architecture standalone et la philosophie moderne d'Angular, visant à simplifier le développement tout en maintenant la robustesse et la flexibilité du framework.
+
+
+---
+
+# Zone.js et la Détection d'Événements dans Angular
+
+## Qu'est-ce que `zone.js` ?
+
+`zone.js` est une bibliothèque JavaScript utilisée par Angular pour suivre l'exécution de code asynchrone. Elle permet à Angular de savoir **quand le modèle de données a potentiellement changé** et qu'il doit déclencher une **détection de changements** pour mettre à jour l'affichage (DOM).
+
+Angular s'appuie sur `zone.js` pour intercepter des opérations asynchrones comme :
+- les événements du DOM (clics, saisies clavier, etc.),
+- les timers (`setTimeout`, `setInterval`),
+- les appels HTTP (`XMLHttpRequest`, `fetch`),
+- les Promesses.
+
+> En interceptant ces actions, `zone.js` permet à Angular de savoir automatiquement **quand** vérifier si l'état de l'application a changé.
+
+## Le rôle de `zone.js` dans Angular
+
+Angular utilise un système de **zones d’exécution** pour surveiller l’activité asynchrone. `zone.js` crée une sorte de "contexte" autour des appels asynchrones.
+
+Quand une tâche asynchrone est terminée (par exemple un clic sur un bouton ou une requête réseau complétée), `zone.js` informe Angular, qui peut alors lancer une **détection des changements** (`Change Detection`).
+
+Cela permet à Angular de mettre à jour automatiquement l'interface utilisateur **sans que le développeur ait besoin de le demander manuellement**.
+
+## Exemple 1 : Clic de bouton
+
+Prenons cet exemple :
+
+```ts
+@Component({
+  selector: 'app-counter',
+  template: `
+    <button (click)="increment()">Increment</button>
+    <p>{{ counter }}</p>
+  `
+})
+export class CounterComponent {
+  counter = 0;
+
+  increment() {
+    this.counter++;
+  }
+}
+```
+
+Lorsque l'utilisateur clique sur le bouton :
+
+1. `zone.js` intercepte l'événement de clic.
+2. Angular exécute `increment()`.
+3. `zone.js` informe Angular que quelque chose a pu changer.
+4. Angular relance sa détection de changement.
+5. Le nouveau `counter` est affiché dans le DOM.
+
+## Exemple 2 : setTimeout
+
+```ts
+setTimeout(() => {
+  this.counter++;
+}, 1000);
+```
+
+Même si ce `setTimeout` est externe à Angular, `zone.js` le détecte et force Angular à re-rendre le composant après l’exécution du callback.
+
+## Comment Angular détecte les changements
+
+Angular exécute une "boucle de détection" (`Change Detection`) qui :
+1. Parcourt l’arbre des composants à partir du composant racine.
+2. Compare les valeurs des propriétés liées au template.
+3. Met à jour le DOM si nécessaire.
+
+Cela garantit que l’interface utilisateur est toujours à jour avec l’état de l’application.
+
+---
+
+## Pourquoi c’est utile ?
+
+Sans `zone.js`, Angular ne saurait pas **quand** quelque chose a changé, et tu devrais appeler manuellement une méthode comme `ChangeDetectorRef.detectChanges()` à chaque mise à jour.
+
+Grâce à `zone.js`, Angular peut rester **réactif** tout en offrant une expérience de développement simple et déclarative.
+
+## Peut-on désactiver `zone.js` ?
+
+Oui, avec Angular 16+ et le système **signal-based**, il est possible de désactiver `zone.js` pour optimiser les performances et contrôler manuellement la détection des changements. Cela demande une approche plus fine et explicite.
+
+
+## ⚠️ Limitations et Problèmes de Performance de `zone.js`
+
+Il semble que zone.js soit un peu problématique au niveau de la performance:
+[Angular: Zone.js Is Bad 😟](https://medium.com/coding-required/angular-zone-js-is-bad-d3ae48df98a7)
+
+Bien que `zone.js` facilite la gestion automatique du cycle de vie et de la détection de changements, il peut devenir un **frein à la performance** dans certaines situations.
+
+### Problèmes fréquents :
+
+- **Détection trop fréquente** : chaque événement asynchrone déclenche une vérification du DOM, même si rien n’a changé.
+- **Pas de ciblage précis** : Angular vérifie tout l’arbre de composants à partir de la racine, ce qui devient coûteux à grande échelle.
+- **UI qui "rame"** : dans des applications riches (tableaux dynamiques, animations complexes), cela peut ralentir les interactions.
+
+### Alternatives pour améliorer la performance :
+
+#### ✅ `ChangeDetectionStrategy.OnPush`
+Indique à Angular de ne vérifier un composant que lorsque ses `@Input()` changent ou un `Observable` émet une nouvelle valeur.
+
+#### ✅ `NgZone.runOutsideAngular()`
+Permet d’exécuter du code (comme des animations ou des timers) sans déclencher de détection de changement.
+
+#### ✅ [**Signals (Angular 16+)**](https://angular.dev/guide/signals)
+![angular-signals](../images/signals.png)
+
+**Les "signals" offrent une alternative moderne à `zone.js`**. 
+Angular sait précisément quelles parties du DOM doivent être mises à jour, ce qui réduit drastiquement le coût des changements.
+
+Avec cette approche, tu peux même désactiver complètement `zone.js` :
+
+```ts
+bootstrapApplication(AppComponent, {
+  providers: [],
+  zone: 'noop'
+});
+```
+
+#### ✅ `ChangeDetectorRef`
+Permet de contrôler manuellement quand Angular doit détecter les changements (`detectChanges()` ou `markForCheck()`).
+
+---
+
+
+
+## Conclusion
+
+`zone.js` est un outil essentiel dans les versions classiques d’Angular. Il agit comme un **agent de surveillance** qui déclenche la détection des changements automatiquement après toute tâche asynchrone. Cela simplifie grandement le développement réactif et la gestion des interactions utilisateur.
+
+Pour les projets où la performance et le contrôle sont critiques, Angular permet désormais de se passer de `zone.js`, en utilisant les **signals** et des stratégies de changement plus précises.
+

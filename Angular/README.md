@@ -18,7 +18,8 @@ Voici les sections disponibles :
 9. [Les directives - Composants, structurelles, d'attribut](docs/09-angular-custom-directives-guide.md)
 10. [Pipes](docs/10-angular-pipes.md)
 11. [Observables (RxJS) et Subscriptions](docs/11-angular-observables-vs-promises.md)
-12. [Interceptors et Guards](docs/12-angular-interceptors-guards.md)
+121. [Interceptors et Guards](docs/12.1-angular-interceptors-guards.md)
+
 13. [Tests](docs/13-angular-tests.md)
 14. [Jests Testing Framework](docs/14-angular-tests-jest.md)
 15. [Gestion d'état (State Management) dans Angular](docs/15-angular-state-management.md)
