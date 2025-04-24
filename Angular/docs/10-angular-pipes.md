@@ -30,15 +30,86 @@ On les utilise dans les templates HTML avec le symbole `|`.
 
 Angular fournit plusieurs **pipes intégrés** très utiles :
 
-| Pipe        | Description                         | Exemple d'utilisation           |
-|-------------|-------------------------------------|----------------------------------|
-| `date`      | Formate les dates                   | {{ today | date:'longDate' }} |
-| `uppercase` | Transforme en majuscules            | `{{ name | uppercase }}`        |
-| `lowercase` | Transforme en minuscules            | `{{ name | lowercase }}`        |
-| `currency`  | Affiche une valeur monétaire        | `{{ price | currency:'CAD' }}`  |
-| `json`      | Affiche un objet sous forme JSON    | `{{ user | json }}`             |
-| `slice`     | Découpe une chaîne ou un tableau    | `{{ list | slice:1:3 }}`        |
 
+```TypeScript
+// Composant
+export class PipesExampleComponent {
+  today = new Date();
+  name = 'Angular';
+  title = 'angular framework';
+  price = 42.99;
+  value = 1234.5678;
+  ratio = 0.2345;
+  user = { name: 'John', age: 30, role: 'Developer' };
+  list = ['a', 'b', 'c', 'd', 'e'];
+  messages = ['Message 1', 'Message 2'];
+  gender = 'male';
+}
+```
+
+```html
+
+<!-- Template -->
+<h2>Pipes intégrés d'Angular</h2>
+
+<table class="pipe-examples">
+  <tr>
+    <th>Pipe</th>
+    <th>Expression</th>
+    <th>Résultat</th>
+  </tr>
+  <tr>
+    <td>date</td>
+    <td>{{ "{{ today | date:'dd/MM/yyyy' }}" }}</td>
+    <td>24/04/2025</td>
+  </tr>
+  <tr>
+    <td>uppercase</td>
+    <td>{{ "{{ name | uppercase }}" }}</td>
+    <td>ANGULAR</td>
+  </tr>
+  <tr>
+    <td>lowercase</td>
+    <td>{{ "{{ name | lowercase }}" }}</td>
+    <td>angular</td>
+  </tr>
+  <tr>
+    <td>titlecase</td>
+    <td>{{ "{{ title | titlecase }}" }}</td>
+    <td>Angular Framework</td>
+  </tr>
+  <tr>
+    <td>currency</td>
+    <td>{{ "{{ price | currency:'EUR' }}" }}</td>
+    <td>€42.99</td>
+  </tr>
+  <tr>
+    <td>number</td>
+    <td>{{ "{{ value | number:'1.2-2' }}" }}</td>
+    <td>1,234.57</td>
+  </tr>
+  <tr>
+    <td>percent</td>
+    <td>{{ "{{ ratio | percent:'2.2-2' }}" }}</td>
+    <td>23.45%</td>
+  </tr>
+  <tr>
+    <td>json</td>
+    <td>{{ "{{ user | json }}" }}</td>
+    <td>{ "name": "John", "age": 30, "role": "Developer" }</td>
+  </tr>
+  <tr>
+    <td>slice</td>
+    <td>{{ "{{ list | slice:1:3 }}" }}</td>
+    <td>["b", "c"]</td>
+  </tr>
+  <tr>
+    <td>i18nSelect</td>
+    <td>{{ "{{ gender | i18nSelect: {'male': 'Monsieur', 'female': 'Madame'} }}" }}</td>
+    <td>Monsieur</td>
+  </tr>
+</table>
+```
 ---
 
 ## Chainer plusieurs pipes
