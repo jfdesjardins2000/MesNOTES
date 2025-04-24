@@ -22,7 +22,9 @@ Voici les sections disponibles :
 13. [Tests](docs/angular-tests.md)
 14. [Jests Testing Framework](docs/angular-tests-jest.md)
 15. [Gestion d'état (State Management) dans Angular](docs/angular-state-management.md)
-
+16. [Architecture d'application ](docs/angular-architecture.md)
+17. [Déploiement (Deployment)](docs/angular-deploiement.md)
+18. [Resources](docs/angular-resources.md)
 
 ---
 
