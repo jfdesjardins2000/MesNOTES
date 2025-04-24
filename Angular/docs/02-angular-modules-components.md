@@ -18,8 +18,12 @@ Angular est un framework puissant qui a considérablement évolué depuis ses d�
 ## Les Modules en Angular
 
 ### Qu'est-ce qu'un NgModule ?
+![@NgModule](../images/ngmodule.png)
+
 
 Dans l'architecture traditionnelle d'Angular, les NgModules servent de conteneurs pour un ensemble cohérent de composants, directives, pipes et services. Ils représentent des blocs fonctionnels qui peuvent être combinés pour créer une application.
+
+[Voir la section sur le routage Angular](./06-angular-routing.md)
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -49,6 +53,18 @@ export class UserModule { }
 - **Feature Modules** : Modules centrés sur une fonctionnalité spécifique
 - **Shared Modules** : Modules contenant des éléments réutilisables
 - **Core Module** : Module pour les services singleton et les composants utilisés une seule fois
+
+### Exemple de code avec l'ancienne approche :
+```bash
+git clone https://github.com/jfdesjardins2000/aspnet-sandbox/tree/main/prof/CodePulse.UI-master
+cd CodePulse.UI-master
+code .
+```
+### Une excellente série sur youtube:
+[Learn NgModule in Angular with Examples](https://www.youtube.com/watch?v=oqZ4-ULwfbc&list=PL0vfts4VzfNjsTV_6i9a9iczMnthWqHzM)
+
+[NgModule FAQ](https://v17.angular.io/guide/ngmodule-faq)
+
 
 ## Les Composants en Angular
 

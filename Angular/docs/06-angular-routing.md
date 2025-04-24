@@ -17,6 +17,18 @@ Avant d'explorer l'évolution du routing, rappelons les concepts clés qui demeu
 - **Lazy loading**: Chargement à la demande des modules ou composants
 
 ## Routing avec NgModule (Approche Traditionnelle)
+![@NgModule](../images/ngmodule.png)
+
+Pour voir un exemple de code avec l'ancienne approche :
+```bash
+git clone https://github.com/jfdesjardins2000/aspnet-sandbox/tree/main/prof/CodePulse.UI-master
+cd CodePulse.UI-master
+code .
+```
+Une excellente série sur youtube:
+[Learn NgModule in Angular with Examples](https://www.youtube.com/watch?v=oqZ4-ULwfbc&list=PL0vfts4VzfNjsTV_6i9a9iczMnthWqHzM)
+
+[NgModule FAQ](https://v17.angular.io/guide/ngmodule-faq)
 
 ### Configuration du Module de Routage (**app-routing.module.ts**)
 
