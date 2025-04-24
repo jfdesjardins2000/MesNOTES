@@ -7,7 +7,7 @@ Angular est particulièrement apprécié pour les applications d'entreprise comp
 
 Voici les sections disponibles :
 
-1. [Introduction et installation](docs/angular-intro.md)
+1. [Introduction et installation](docs/01-angular-install.md)
 2. [Composants et Modules](docs/angular-modules-components.md)
 3. [Templates](docs/angular-templates.md)
 4. [Data Binding](docs/angular-data-binding.md)
