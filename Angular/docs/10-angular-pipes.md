@@ -26,13 +26,13 @@ On les utilise dans les templates HTML avec le symbole `|`.
 
 ---
 
-## Utilisation des pipes intégrés
+## Utilisation des [Built-in Pipes](https://angular.dev/guide/templates/pipes#built-in-pipes) 
 
 Angular fournit plusieurs **pipes intégrés** très utiles :
 
 | Pipe        | Description                         | Exemple d'utilisation           |
 |-------------|-------------------------------------|----------------------------------|
-| `date`      | Formate les dates                   | `{{ today | date:'longDate' }}` |
+| `date`      | Formate les dates                   | {{ today | date:'longDate' }} |
 | `uppercase` | Transforme en majuscules            | `{{ name | uppercase }}`        |
 | `lowercase` | Transforme en minuscules            | `{{ name | lowercase }}`        |
 | `currency`  | Affiche une valeur monétaire        | `{{ price | currency:'CAD' }}`  |
