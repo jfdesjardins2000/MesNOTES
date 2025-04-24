@@ -18,7 +18,7 @@ Avant d'explorer l'évolution du routing, rappelons les concepts clés qui demeu
 
 ## Routing avec NgModule (Approche Traditionnelle)
 
-### Configuration du Module de Routage
+### Configuration du Module de Routage (**app-routing.module.ts**)
 
 Traditionnellement, les routes Angular étaient définies dans un module de routage dédié:
 
@@ -48,7 +48,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 
-### Intégration dans le Module Principal
+### Intégration dans le Module Principal (**app.module.ts**)
 
 Ce module de routage était ensuite importé dans le module principal de l'application:
 
