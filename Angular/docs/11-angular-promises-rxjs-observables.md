@@ -115,6 +115,8 @@ setTimeout(() => {
 - **Gestion d'erreurs intégrée** : Permettent une gestion fine des erreurs à différents niveaux.
 - **Possibilité de multicast** : Peuvent diffuser les mêmes données à plusieurs abonnés (avec des Subject).
 
+![rxjsobservables](../images/rxjs-observables.png)
+
 ---
 
 ## Subscriptions 101
