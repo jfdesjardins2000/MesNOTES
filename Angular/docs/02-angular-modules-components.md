@@ -70,6 +70,8 @@ code .
 
 ## Les Composants en Angular
 
+![component-tree](../images/angular-component-tree.png)
+
 ### Anatomie d'un Composant
 
 Un composant Angular est une classe TypeScript décorée avec `@Component` qui contrôle une partie de l'interface utilisateur.
