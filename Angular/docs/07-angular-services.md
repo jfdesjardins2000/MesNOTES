@@ -26,6 +26,9 @@ Angular offre plusieurs méthodes pour accéder aux données JSON provenant d'AP
 - [Comparaison des approches](#comparaison-des-approches)
 - [Bonnes pratiques](#bonnes-pratiques)
 
+
+![services1](../images/services-1.png)
+
 ---
 
 ## Qu’est-ce qu’un service ?
@@ -65,8 +68,8 @@ export class DataService {
 ```
 
 ---
-
 ## L'injection de dépendance
+
 
 Angular injecte automatiquement un service dans le constructeur d’un composant :
 
