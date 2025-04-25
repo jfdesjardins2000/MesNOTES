@@ -44,6 +44,7 @@ Les services sont instanciés et injectés par Angular grâce à son système de
 
 ---
 
+![service2](../images/services-2.png)
 ## Créer un service
 
 Utilise Angular CLI pour générer un service :
@@ -68,6 +69,7 @@ export class DataService {
 ```
 
 ---
+
 ## L'injection de dépendance
 
 

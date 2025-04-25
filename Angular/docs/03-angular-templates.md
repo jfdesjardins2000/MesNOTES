@@ -8,6 +8,7 @@ Les templates HTML constituent le cœur de la façon dont Angular affiche l'inte
 
 
 ![directive1](../images/directives-1.png)
+![directive2](../images/directives-2.png)
 
 ## Interpolation
 
@@ -65,6 +66,10 @@ Angular propose également une liaison bidirectionnelle qui combine la liaison d
 ```
 
 Pour utiliser `ngModel`, il faut importer le module `FormsModule` dans le module de l'application.
+
+---
+
+![directive3](../images/directives-3.png)
 
 ## Directives Structurelles
 

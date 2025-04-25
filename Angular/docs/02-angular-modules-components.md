@@ -56,6 +56,10 @@ export class UserModule { }
 - **Shared Modules** : Modules contenant des éléments réutilisables
 - **Core Module** : Module pour les services singleton et les composants utilisés une seule fois
 
+![ngmodules2](../images/ngmodule-2.png)
+
+
+
 ### Exemple de code avec l'ancienne approche :
 ```bash
 git clone https://github.com/jfdesjardins2000/aspnet-sandbox/tree/main/prof/CodePulse.UI-master
