@@ -15,6 +15,8 @@ Angular est un framework puissant qui a considérablement évolué depuis ses d�
 | Angular 16 | Mai 2023 | Support complet des composants standalone, routage standalone |
 | Angular 17 | Novembre 2023 | Composants standalone comme option par défaut dans les nouveaux projets |
 
+![Angular-Evolution](../images/angular-stable-evolving-framework.png)
+
 ## Les Modules en Angular
 
 ### Qu'est-ce qu'un NgModule ?

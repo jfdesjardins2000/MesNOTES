@@ -1,4 +1,4 @@
-# Les Interceptors et Guards en Angular: De NgModule à Standalone
+# Les Interceptors, Guards et zone.js en Angular
 
 ## Introduction
 
@@ -801,6 +801,99 @@ Bien que `zone.js` facilite la gestion automatique du cycle de vie et de la dét
 - **Détection trop fréquente** : chaque événement asynchrone déclenche une vérification du DOM, même si rien n’a changé.
 - **Pas de ciblage précis** : Angular vérifie tout l’arbre de composants à partir de la racine, ce qui devient coûteux à grande échelle.
 - **UI qui "rame"** : dans des applications riches (tableaux dynamiques, animations complexes), cela peut ralentir les interactions.
+
+
+## 🔍 Pour savoir si le projet Angular utilise zone.js ou les signals, voici les vérifications simples à faire :
+
+### Vérifier si zone.js est utilisé
+#### Regarde dans **angular.json** :
+Ouvre le fichier angular.json et cherche une ligne comme celle-ci dans "scripts" (sous architect > build > options ou test > options) :
+```json
+"scripts": [
+  "node_modules/zone.js/dist/zone.js"
+]
+```
+Si tu vois zone.js, alors tu utilises bien Zone.js pour la gestion du changement de détection.
+
+#### Regarde dans **main.ts** :
+Tu verras peut-être une ligne comme :
+```typescript
+import 'zone.js';  // Nécessaire pour Angular
+```
+* Si tu vois `bootstrapApplication` avec `{ ngZone: 'noop' }` dans les options, ton application utilise probablement les signals sans zone.js
+* Si tu n'as pas cette configuration, tu utilises probablement zone.js
+
+#### Vérifier le fichier **package.json**
+
+* La présence de zone.js dans les dépendances indique son utilisation
+* Pour les versions récentes d'Angular (17+), zone.js est optionnel si tu utilises les signals
+
+#### Regarde dans tsconfig.app.json :
+Si tu vois une ligne comme :
+```json
+"types": ["zone.js"]
+```
+C’est un autre indice que Zone.js est bien là.
+
+
+#### 🧠 Vérifier si les signals sont utilisés
+
+Cherche des imports comme ça :
+```typescript
+import { signal, computed, effect } from '@angular/core';
+```
+Si tu trouves ça, alors tu utilises les signals.
+
+Cherche des appels à signal(...) ou computed(...) dans tes composants ou services :
+
+```typescript
+count = signal(0);
+doubleCount = computed(() => this.count() * 2);
+```
+
+
+#### 🤔 Et si tu veux vraiment savoir ce qu’Angular utilise pour la détection des changements ?
+
+* Angular 17+ permet de désactiver `zone.js` en utilisant le mode `Zone-less` (sans zone), mais **ce n’est pas automatique.**
+* Tu peux aussi le vérifier dans `main.ts` avec la configuration de `bootstrapApplication()` :
+```ts
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true })
+  ]
+});
+```
+* Si tu vois provideZoneChangeDetection(...), tu utilises toujours Zone.js.
+* Si tu vois provideSignals(), tu es probablement dans un setup moderne orienté Signals.
+
+
+#### 🔍 Commandes complémentaires (via le terminal)
+Il n'existe pas de commande CLI officielle Angular (ng ...) 
+1. Chercher les imports signal dans le code :
+```bash
+grep -r "signal(" src/
+```
+2. Chercher les imports zone.js :
+```bash
+grep -r "zone.js" src/ angular.json
+```
+3. Tu peux voir si zone.js est installé dans ton projet :
+```bash
+npm list zone.js
+```
+4. Quelques autre commandes pour v/rifier:
+```bash
+# Vérifier si zone.js est présent dans package.json
+grep -A 5 "zone.js" package.json
+
+# Rechercher les imports de signals dans les fichiers TypeScript
+grep -r "import.*signal" --include="*.ts" ./src
+
+# Vérifier si ngZone: 'noop' est configuré dans main.ts
+grep -r "ngZone.*noop" --include="main.ts" ./src
+```
+
+
 
 ### Alternatives pour améliorer la performance :
 
