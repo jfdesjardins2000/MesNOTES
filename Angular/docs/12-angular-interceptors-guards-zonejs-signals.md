@@ -4,6 +4,7 @@ Aller à la section :
 * [Partie 1: Les Guards en Angular](#guards)
 * [Partie 2: Les Interceptors HTTP en Angular](#Interceptors)
 * [Partie 3 : Zone.js et la Détection d'Événements dans Angular](#zonejs)
+* [Partie 4: Les Signals ](#signals)
 
 
 ---
@@ -912,6 +913,9 @@ grep -r "ngZone.*noop" --include="main.ts" ./src
 ```
 
 
+<a id="signals"></a>
+
+## Partie 4: Les Signals dans Angular
 
 ### Alternatives pour améliorer la performance :
 
@@ -971,11 +975,7 @@ export class UserComponent {
   }
 }
 
-
-
 ```
-
-
 
 
 ## Conclusion
