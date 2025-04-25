@@ -1,8 +1,13 @@
-# Templates Angular : La Base de la Construction de Vue
+# Templates et Directives dans Angular : La Base de la Construction de Vue
+
+
 
 ## Introduction
 
 Les templates HTML constituent le cœur de la façon dont Angular affiche l'interface utilisateur. Ils définissent la façon dont l'application est rendue dans le navigateur, permettant une liaison dynamique entre la vue et les données. Angular étend la syntaxe HTML traditionnelle avec des fonctionnalités supplémentaires qui permettent d'exprimer la logique de présentation de manière déclarative.
+
+
+![directive1](../images/directives-1.png)
 
 ## Interpolation
 
