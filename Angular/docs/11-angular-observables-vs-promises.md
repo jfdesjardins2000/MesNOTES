@@ -16,7 +16,7 @@
 Dans le développement moderne avec JavaScript et TypeScript, particulièrement dans Angular, deux paradigmes principaux sont utilisés pour gérer les opérations asynchrones : les Promesses et les Observables. Bien que ces deux approches partagent certaines similitudes, elles présentent des différences fondamentales, notamment en ce qui concerne le concept de "subscription" propre aux Observables.
 
 
-*Observables: It's a concept provided by RxJS NOT by Angular! *
+**Observables: It's a concept provided by RxJS NOT by Angular!**
 
 ## Promesses vs Observables
 
