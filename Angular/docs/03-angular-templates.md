@@ -195,6 +195,15 @@ La projection de contenu permet d'insérer du contenu externe dans un composant 
 </div>
 ```
 
+
+## Custom directives Guide
+Voir la section [Les Directives en Angular](./09-angular-custom-directives-guide.md)
+
+
+
+
+
+
 ## Bonnes Pratiques
 
 1. **Logique minimale** : Garder les templates aussi simples que possible, en déplaçant la logique complexe dans le composant.
