@@ -18,9 +18,13 @@ Dans le développement moderne avec JavaScript et TypeScript, particulièrement 
 
 **Observables: It's a concept provided by RxJS NOT by Angular!**
 
+* Observables: Values over time (Great for managing events & streamed data).
+* Signals: Values in a container (Great for managing application state).
+
+
 ## Promesses vs Observables
 
-### Promesses ([Promises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Using_promises))v
+### Promesses ([Promises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Using_promises))
 
 Les promesses sont un concept plus ancien et plus simple pour gérer les opérations asynchrones.
 
