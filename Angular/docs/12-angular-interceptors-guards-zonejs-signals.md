@@ -948,7 +948,10 @@ Permet de contrôler manuellement quand Angular doit détecter les changements (
 ---
 
 ### Un exemple de Signal :
+
 ```ts
+// user.component.ts
+
 import { Component, computed, signal } from '@angular/core';
 
 import { DUMMY_USERS } from '../dummy-users';
@@ -962,25 +965,186 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomIndex]);
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
 
-  // get imagePath() {
-  //   return 'assets/users/' + this.selectedUser.avatar
+  //selectedUser = DUMMY_USERS[randomIndex];
+  selectedUser = signal(DUMMY_USERS[randomIndex]);
+
+  // get imagePath(): string {
+  //   // Assuming the images are stored in the 'assets/users' directory
+  //   // and the avatar property contains the image file name.   
+  //   return 'assets/users/' + this.selectedUser.avatar;
   // }
 
-  onSelectUser() {
+  imagePath = computed(() => {
+    return 'assets/users/' + this.selectedUser().avatar;
+  });
+
+  onSelectUserClick() {
     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+    
+    //this.selectedUser = DUMMY_USERS[randomIndex];
     this.selectedUser.set(DUMMY_USERS[randomIndex]);
+
+
+    console.log('User selected:', this.selectedUser.name);
+    
+    // Optionally, you can also update the image path if needed}
+     //this.imagePath = 'assets/users/' + this.selectedUser.avatar;
+     console.log('Image path:', this.imagePath);
   }
 }
-
 ```
 
+```html
+<!-- user.component.html -->
+<div>
+    <button (click)="onSelectUserClick()">
+      <!-- <img [src]="imagePath" [alt]="selectedUser.name" />
+      <span>{{ selectedUser.name }}</span> -->
+      <img [src]="imagePath()" [alt]="selectedUser().name" />
+      <span>{{ selectedUser().name }}</span>
+    </button>
+  </div>
+  
+```
 
-## Conclusion
+### Explications des différences avec le Signal:
+La différence que tu observes dans la syntaxe est due à l'utilisation des signals dans Angular. Voici l'explication :
+
+**Avant les signals (approche traditionnelle)**
+```html
+<img [src]="imagePath" [alt]="selectedUser.name" />
+<span>{{ selectedUser.name }}</span>
+```
+Dans cette approche, selectedUser était un objet simple et imagePath était soit une propriété, soit un getter. Angular accédait directement à ces propriétés.
+
+**Avec les signals (nouvelle approche)**
+```html
+<img [src]="imagePath()" [alt]="selectedUser().name" />
+<span>{{ selectedUser().name }}</span>
+```
+Quand tu utilises les signals, tu remarques deux changements importants :
+
+Les parenthèses `()` : Avec les signals, tu dois appeler la fonction pour obtenir la valeur actuelle du signal. C'est pourquoi tu vois `selectedUser()` et `imagePath()` avec des parenthèses.
+Accès aux propriétés : Pour accéder à une propriété d'un objet contenu dans un signal, tu dois d'abord **"déballer"** le signal en l'appelant comme une fonction (`selectedUser()`), puis accéder à sa propriété (`.name`).
+
+**Pourquoi cette différence ?**
+
+Les signals sont des **conteneurs réactifs** qui :
+
+* Encapsulent les valeurs
+* Notifient les changements
+* Suivent les dépendances
+
+Cette approche fonctionnelle **(`signal()` pour lire, `signal.set()` pour écrire)** permet à Angular de mieux suivre les dépendances entre tes données et l'interface utilisateur, ce qui améliore les performances puisque seules les parties de l'interface qui dépendent d'un signal modifié seront mises à jour.
+
+C'est une différence syntaxique fondamentale entre l'approche traditionnelle et l'approche basée sur les signals dans Angular.
+
+
+### Résumé
 
 `zone.js` est un outil essentiel dans les versions classiques d’Angular. Il agit comme un **agent de surveillance** qui déclenche la détection des changements automatiquement après toute tâche asynchrone. Cela simplifie grandement le développement réactif et la gestion des interactions utilisateur.
 
 Pour les projets où la performance et le contrôle sont critiques, Angular permet désormais de se passer de `zone.js`, en utilisant les **signals** et des stratégies de changement plus précises.
 
+Les Signals représentent une évolution significative dans la façon dont Angular gère la réactivité. Contrairement au change detection traditionnel basé sur `zone.js`, les Signals offrent une approche explicite et performante pour la gestion de l'état.
+
+Les principaux avantages des Signals sont :
+
+* **Performance améliorée** : Le rendu est ciblé uniquement sur les composants qui dépendent des valeurs modifiées
+* **Réactivité fine** : Le suivi des dépendances est précis et automatique
+* **Syntaxe explicite** : L'utilisation des parenthèses (signal()) rend visible les sources de données réactives
+* **Encapsulation** : Les méthodes `.set()`, `.update()` et `.mutate()` contrôlent strictement les modifications
+* **Composabilité** : Avec `computed()`, on peut créer des valeurs dérivées qui se mettent à jour automatiquement
+
+La transition vers les Signals marque une nouvelle ère pour Angular, où les applications peuvent devenir plus performantes tout en gardant une architecture prévisible et maintenable, réduisant progressivement la dépendance envers `zone.js` pour la détection des changements.
+
+
+## Est-il possible d'utiliser zone.js ET les Signals dans un meme projet ?
+Oui, il est tout à fait possible d'utiliser zone.js et les Signals simultanément dans un même projet Angular. C'est même l'approche recommandée pour la migration progressive des applications existantes.
+
+
+**Comment cela fonctionne :**
+
+1. **Coexistence naturelle** : Angular a été conçu pour que les `Signals` et `zone.js` puissent fonctionner ensemble sans conflit.
+2. **Migration graduelle** : Tu peux commencer à utiliser les `Signals` dans certains composants tout en laissant d'autres utiliser l'approche traditionnelle avec `zone.js`.
+3. **Détection hybride** : Un composant peut même utiliser les deux approches en interne - certaines propriétés peuvent être des Signals tandis que d'autres restent des propriétés standard.
+
+
+### Exemple d'utilisation mixte :
+```ts
+@Component({
+  selector: 'app-hybrid',
+  template: `
+    <div>Signal value: {{ counter() }}</div>
+    <div>Traditional value: {{ traditionalCounter }}</div>
+    <button (click)="increment()">Increment both</button>
+  `
+})
+export class HybridComponent {
+  // Signal approach
+  counter = signal(0);
+  
+  // Traditional approach
+  traditionalCounter = 0;
+  
+  increment() {
+    // Update signal
+    this.counter.update(value => value + 1);
+    
+    // Update traditional property
+    this.traditionalCounter++;
+  }
+}
+```
+
+**Considérations :**
+
+* Pour les **nouveaux développements** dans un projet existant, **privilégier les Signals lorsque c'est possible**
+* Pour la maintenance de code existant, tu peux continuer à utiliser l'approche traditionnelle
+* Dans les versions récentes d'Angular, tu as le choix d'opter pour un mode "sans zone.js" dans les nouveaux projets, mais ce n'est pas une obligation
+
+L'équipe Angular a conçu cette transition pour être aussi fluide que possible, te permettant d'adopter les Signals à ton propre rythme.
+
+
+### ZoneLess
+Le mode "zoneless" (sans zone.js) est une option importante dans les applications Angular modernes utilisant les Signals. Voici ce qu'il faut savoir sur cette approche :
+
+**Applications Angular sans zone.js**
+
+Le mode "zoneless" permet de construire des applications Angular qui fonctionnent entièrement sans zone.js, en s'appuyant **uniquement sur les Signals et la détection de changement explicite**. Pour configurer une application en mode zoneless :
+
+```ts
+// Dans main.ts
+bootstrapApplication(AppComponent, {
+  providers: [
+    { provide: NgZone, useValue: 'noop' }
+  ]
+});
+```
+
+#### Avantages du mode zoneless
+
+1. **Performance améliorée** : Éliminer zone.js réduit la surcharge de surveillance des événements asynchrones
+2. **Bundle plus léger** : La taille de l'application est réduite (zone.js représente environ 100 Ko non minifiés)
+3. **Détection de changements prévisible**: Les mises à jour de l'UI sont explicites, sans "magie" en arrière-plan
+4. **Meilleure interopérabilité** : Évite les conflits potentiels avec des bibliothèques tierces
+
+#### Points d'attention
+
+1. **Gestion manuelle** : Sans zone.js, tu dois gérer explicitement la détection de changements après les opérations asynchrones
+2. **Utilisation de ChangeDetectorRef** : Pour les cas où tu as besoin de déclencher manuellement la détection de changements
+
+```ts
+constructor(private cdr: ChangeDetectorRef) {}
+
+fetchData() {
+  this.http.get('/api/data').subscribe(data => {
+    this.data = data;
+    this.cdr.detectChanges(); // Nécessaire en mode zoneless
+  });
+}
+```
+3. **Migration progressive** : Le passage complet au mode zoneless est généralement recommandé pour les nouvelles applications ou après une migration complète vers les Signals
+
+Le mode zoneless représente l'avenir d'Angular, avec une architecture plus légère et plus prévisible, mais il demande une compréhension plus approfondie du cycle de détection des changements.
