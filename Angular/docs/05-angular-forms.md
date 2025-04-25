@@ -4,6 +4,8 @@
 
 La gestion des formulaires est un élément essentiel de toute application web interactive. Angular propose deux approches distinctes pour gérer les formulaires : les formulaires basés sur le template (Template-driven forms) et les formulaires réactifs (Reactive forms). Chaque approche répond à des besoins différents et offre ses propres avantages. Ce chapitre explore en détail ces deux méthodes, leurs caractéristiques, et les cas d'utilisation appropriés.
 
+![ngform1](../images/ngform-1.png)
+
 ## Les Deux Approches de Formulaires
 
 | Caractéristique | Template-driven Forms | Reactive Forms |
