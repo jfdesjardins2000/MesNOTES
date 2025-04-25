@@ -1,9 +1,18 @@
 # Les Interceptors, Guards et zone.js en Angular
 
+Aller à la section :
+* [Partie 1: Les Guards en Angular](#guards)
+* [Partie 2: Les Interceptors HTTP en Angular](#Interceptors)
+* [Partie 3 : Zone.js et la Détection d'Événements dans Angular](#zonejs)
+
+
+---
+
 ## Introduction
 
 Les interceptors et guards sont des éléments essentiels pour sécuriser et enrichir les applications Angular. Ces fonctionnalités ont connu une transformation significative avec l'évolution vers l'architecture standalone. Cet article explore en détail ces deux concepts, leur fonctionnement traditionnel et leur implémentation moderne.
 
+<a id="guards"></a>
 ## Partie 1: Les Guards en Angular
 
 ### Concept et Rôle des Guards
@@ -255,6 +264,9 @@ const routes: Routes = [
   }
 ];
 ```
+---
+
+<a id="Interceptors"></a>
 
 ## Partie 2: Les Interceptors HTTP en Angular
 
@@ -706,7 +718,10 @@ Bien que le support des implémentations basées sur les classes reste présent 
 
 ---
 
-# Zone.js et la Détection d'Événements dans Angular
+<a id="zonejs"></a>
+
+# Partie 3 : Zone.js et la Détection d'Événements dans Angular
+![zonejs1](../images/zonejs-1.png)
 
 ## Qu'est-ce que `zone.js` ?
 
@@ -727,6 +742,9 @@ Angular utilise un système de **zones d’exécution** pour surveiller l’acti
 Quand une tâche asynchrone est terminée (par exemple un clic sur un bouton ou une requête réseau complétée), `zone.js` informe Angular, qui peut alors lancer une **détection des changements** (`Change Detection`).
 
 Cela permet à Angular de mettre à jour automatiquement l'interface utilisateur **sans que le développeur ait besoin de le demander manuellement**.
+
+![zonejs2](../images/zonejs-2.png)
+
 
 ## Exemple 1 : Clic de bouton
 
@@ -908,6 +926,8 @@ Permet d’exécuter du code (comme des animations ou des timers) sans déclench
 
 **Les "signals" offrent une alternative moderne à `zone.js`**. 
 Angular sait précisément quelles parties du DOM doivent être mises à jour, ce qui réduit drastiquement le coût des changements.
+
+![angular-signals2](../images/signals2.png)
 
 Avec cette approche, tu peux même désactiver complètement `zone.js` :
 
