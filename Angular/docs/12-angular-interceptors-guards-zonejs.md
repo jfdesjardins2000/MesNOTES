@@ -527,7 +527,7 @@ export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
 
 ## Tableau Comparatif: NgModule vs Standalone
 
-| Aspect | Approach NgModule | Approche Standalone |
+| Aspect | Approche NgModule | Approche Standalone |
 |--------|------------------|---------------------|
 | **Guards** |||
 | Type | Classes avec interfaces | Fonctions |
