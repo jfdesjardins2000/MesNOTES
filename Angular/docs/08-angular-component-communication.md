@@ -6,6 +6,8 @@ Dans une application Angular, l'interface utilisateur est généralement structu
 
 Ce chapitre explore en détail les différentes techniques de communication entre composants, leurs cas d'utilisation appropriés, et les bonnes pratiques associées.
 
+**Consulter la doc officielle: [input-output-docs](https://docs.angular.lat/guide/inputs-outputs)**
+
 ## Vue d'Ensemble des Méthodes de Communication
 
 Angular propose plusieurs méthodes pour partager des données et des événements entre composants :
@@ -20,35 +22,16 @@ Angular propose plusieurs méthodes pour partager des données et des événemen
 | Observables & RxJS | Toute direction | Toute relation | Flux de données asynchrones et réactifs |
 
 
-voir: [input-output-docs](https://docs.angular.lat/guide/inputs-outputs)
+## Comment utiliser @Input()
+Use the @Input() decorator in a child component or directive to let Angular know that a property in that component can receive its value from its parent component. It helps to remember that the data flow is from the perspective of the child component. So an @Input() allows data to be input into the child component from the parent component.
 
-## Un premier exemple
-```ts
+![coomunication-input](../images/communication-input.png)
 
-import { Component, Input, input  } from '@angular/core';
 
-@Component({
-  selector: 'app-user',
-  standalone: true,
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.css',
-})
-export class UserComponent {
-  // @Input({required: true} ) avatar!: string;
-  // @Input({required: true}) name!: string;
-  
-  // on peut aussi ecrire en utilisant la fonction input
-  avatar = input.required<string>();
-  name = input.required<string>();
+## `@Input()` and `@Output()` together
 
-  get imagePath() {
-    return 'assets/users/' + this.avatar;
-  }
+![communication-input-output](../images/communication-input-output.png)
 
-  onSelectUser() {}
-}
-
-```
 
 ## Différence entre  @Input() et input()
 ### 1. @Input()
