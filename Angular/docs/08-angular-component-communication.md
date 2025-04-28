@@ -19,9 +19,96 @@ Angular propose plusieurs méthodes pour partager des données et des événemen
 | NgRx/Store | Toute direction | Toute relation | Gestion d'état complexe et communication globale |
 | Observables & RxJS | Toute direction | Toute relation | Flux de données asynchrones et réactifs |
 
+
+voir: [input-output-docs](https://docs.angular.lat/guide/inputs-outputs)
+
+## Un premier exemple
+```ts
+
+import { Component, Input, input  } from '@angular/core';
+
+@Component({
+  selector: 'app-user',
+  standalone: true,
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css',
+})
+export class UserComponent {
+  // @Input({required: true} ) avatar!: string;
+  // @Input({required: true}) name!: string;
+  
+  // on peut aussi ecrire en utilisant la fonction input
+  avatar = input.required<string>();
+  name = input.required<string>();
+
+  get imagePath() {
+    return 'assets/users/' + this.avatar;
+  }
+
+  onSelectUser() {}
+}
+
+```
+
+## Différence entre  @Input() et input()
+### 1. @Input()
+
+C'est l'ancien (et toujours valide) décorateur classique d'Angular.
+Tu l'utilises pour dire qu'une propriété d'un composant doit recevoir une valeur de l'extérieur (d'un autre composant parent).
+
+Exemple classique :
+```ts
+@Input() avatar!: string;
+@Input() name!: string;
+```
+`@Input()` est un **décorateur** qui est exécuté par Angular au moment de la compilation.
+
+`!`: veut dire : "je promets que la valeur va être donnée par le parent (**non-null assertion**)".
+
+**Problème** : avec `@Input()`, on ne peut pas forcer au runtime qu'une valeur est absolument requise. On doit vérifier nous-même dans le code ou faire confiance.
+
+### 2. `input()` et `input.required()`
+
+**C'est la nouvelle façon, introduite avec Angular 17** (et vraiment mise en avant avec Angular 18).
+**input est une fonction (pas un décorateur)**, qui définit l'input de manière plus forte et plus contrôlée.
+
+Ton exemple :
+```ts
+avatar = input.required<string>();
+name = input.required<string>();
+
+```
+* input.required<string>() signifie "cet input est obligatoire".
+
+* Si l'utilisateur du composant oublie de passer l'input, Angular va lever une erreur claire au moment du chargement du composant.
+
+* C'est plus sûr que @Input() + !:.
+
+* On peut aussi écrire des input.optional() si ce n'est pas obligatoire.
+
+### Résumé visuel rapide :
+
+| | **@Input()** | **input() / input.required()** |
+|---|---|---|
+| **Type** | Décorateur | Fonction |
+| **Apparition** | Très vieux (Angular 2+) | Angular 17+ |
+| **Peut forcer "obligatoire"** | Non (à la main) | Oui (required) |
+| **Meilleure sécurité** | Moyenne | Excellente |
+| **Compatible standalone components ?** | Oui | Oui |
+
+### Pourquoi changer ? ###
+Parce que Angular essaie de devenir plus :
+
+* Strict (moins d'erreurs silencieuses)
+
+* Ergonomique avec les "standalone components" (plus besoin de metadata dispersée)
+
+* Moderne et plus proche de ce que font d'autres frameworks modernes.
+
 ## Communication Parent → Enfant avec @Input
 
 La méthode la plus simple pour passer des données d'un composant parent à un composant enfant est d'utiliser le décorateur `@Input`.
+
 
 ### Dans le Composant Enfant
 
