@@ -204,7 +204,7 @@ Exemple : clean-start va d’abord lancer les commandes  `npm run clean && npm r
 - Installe l’extension **Debugger for Chrome** dans VS Code (ou Edge selon ton navigateur)
 - Lance le debug via `F5` ou l’onglet "Run and Debug"
 
-```json
+```jsonc
 {
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
@@ -311,7 +311,7 @@ Il définit :
 
 📄 tsconfig.json — Globale
 
-```json
+```jsonc
 {
   "compilerOptions": {
     "target": "ES2022",           // Version JS générée (ex: ES2022 → moderne)
@@ -392,7 +392,7 @@ Il :
  * est référencé dans `angular.json` (dans la section `build.options.tsConfig`).
 
 📄 tsconfig.app.json — Spécifique à l'application Angular
- ```json
+ ```jsonc
  {
   "extends": "../tsconfig.json",         // Hérite de la configuration globale (chemins, options de compilation...)
 
@@ -436,7 +436,6 @@ npx ng serve
   tsconfig.spec.json        <-- spécifique aux tests
 
 ```
-
 
 ---
 
