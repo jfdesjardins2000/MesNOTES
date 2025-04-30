@@ -318,7 +318,7 @@ Il définit :
     "module": "ESNext",           // Système de modules (ESNext recommandé pour Angular)
     "strict": true,               // Active les règles strictes (bonnes pratiques)
     "baseUrl": "./",              // Point de base pour les imports relatifs
-    "paths": { ... }              // Alias de chemins si besoin
+    "paths": {  }                 // Alias de chemins si besoin
   },
   "exclude": ["./docs"],          // Dossiers à ignorer
   "references": [
