@@ -30,9 +30,69 @@ Voici les sections disponibles :
 
 ## 📌 Notes utiles
 
-- Favoriser `npx` car cela permet d’utiliser `ng` **sans installation globale**
+ ✅ Activer la bonne version de Node via nvm: 
+```ps
+nvm install 18.20.8
+nvm use 18.20.8
+```
+✅Favoriser `npx` car cela permet d’utiliser `ng` **sans installation globale**
+```ps
+npx @angular/cli@18 new nomprojet
+```
 - Angular CLI cherche `angular.json` pour fonctionner
-- Ton `node_modules/.bin` contient tous les exécutables locaux (dont `ng`)
+- Avec une installation locale `node_modules/.bin` contient tous les exécutables locaux (dont `ng`, `npx`, `tsc`...)
+
+
+
+## 🧪 Commandes Angular utiles
+Ouvre la fenêtre Terminal
+
+## Génération de composants et services avec Angular CLI
+
+### Composant avec dossier dédié
+```bash
+# Génère un composant Angular dans un nouveau dossier "un-premier-composant"
+npx ng generate component un-premier-composant
+```
+
+### Service Angular
+```bash
+# Génère un service Angular nommé "mon-service" (fichiers créés dans src/app)
+npx ng generate service mon-service
+```
+
+### Composant sans sous-dossier
+```bash
+# Génère un composant "header" sans créer de sous-dossier (fichiers dans le dossier courant)
+npx ng generate component header --flat
+```
+
+### Simulation (dry run) d’un composant sans sous-dossier
+```bash
+# Simule la génération du composant "mon-composant" sans créer de dossier
+# (affiche les fichiers qui seraient créés, sans rien modifier)
+npx ng generate component mon-composant --flat --dry-run
+```
+
+---
+
+## Abréviations pratiques
+
+| Longue option              | Abrégé  |
+|---------------------------|---------|
+| `generate`                | `g`     |
+| `component`               | `c`     |
+| `service`                 | `s`     |
+| `--flat`                  | `-f`    |
+| `--dry-run`               | `-d`    |
+
+### Exemple avec abréviations :
+```bash
+npx ng g c nom-composant -f -d
+```
+
+> 💡 Utile pour tester une commande sans rien créer.
+
 
 
 ## Angular cheatsheet
