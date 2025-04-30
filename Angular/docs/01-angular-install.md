@@ -67,7 +67,7 @@ nvm use 18.20.8
 | Installation locale d'une version spécifique (dans `dependencies` de `package.json`) | `npx @angular/cli@18 new nom-du-projet` |
 | Installation locale pour la **production** (dans `dependencies` de `package.json`) | `npm install @angular/cli --save` |
 | Installation de la dernière version en local pour le **developpement** seulement (dans `devDependencies` de `package.json`) | `npm install --save-dev @angular/cli` |
-| Installation globalement (global) - <span style="color:red">**non recommandé**</span> | `npm install -g @angular/cli` |
+| Installation globale (**⚠️ non recommandée**) | `npm install -g @angular/cli` |
 | Commande pour vérifier l'emplacement des packages globaux | `npm root -g` |
 
 ---
