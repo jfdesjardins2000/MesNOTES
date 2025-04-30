@@ -523,6 +523,7 @@ npx ng generate component mon-composant --flat --dry-run
 | `service`                 | `s`     |
 | `--flat`                  | `-f`    |
 | `--dry-run`               | `-d`    |
+| `--skip-tests`            | `-t`    |
 
 ### Exemple avec abréviations :
 ```bash
