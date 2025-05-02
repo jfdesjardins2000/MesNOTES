@@ -5,7 +5,7 @@
 // Pour utiliser ce script, suivez ces étapes :
 
 // Assurez-vous d'avoir Node.js installé sur votre machine.
-// Exécutez le script avec la commande node list-extensions.js dans le terminal.
+// Exécutez le script avec la commande: ./tools/node list-extensions.js dans le terminal.
 // Le fichier extensions.txt sera créé dans le même répertoire que le script.
 
 const fs = require('fs');
