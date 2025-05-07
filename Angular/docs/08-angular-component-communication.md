@@ -22,6 +22,95 @@ Angular propose plusieurs méthodes pour partager des données et des événemen
 | Observables & RxJS | Toute direction | Toute relation | Flux de données asynchrones et réactifs |
 
 
+## Exemple de base 
+### @Input() Parent → Enfant et 
+### @Output & EventEmitter	Enfant → Parent
+Voir un exemple dans [Angular-101](https://github.com/jfdesjardins2000/angular-sandbox/tree/main/angular-101)
+```ts
+
+//////////////////////////////////////
+// src\app\parent\parent.component.ts
+//////////////////////////////////////
+import {Component} from '@angular/core';
+import { EnfantComponent } from '../enfant/enfant.component';
+
+@Component({
+  selector: 'app-parent',
+  standalone: true,
+  imports: [CommonModule, FormsModule, EnfantComponent],
+  template:<app-enfant [estChecked]="estCoche" [nomDuPere]="nomDuPapa" (selectedItemEvent)="onItemSelection($event)"></app-enfant>
+})
+export class ParentComponent implements OnInit{
+  
+  titreComposantParent: string = 'component parent';
+  estCoche:boolean = false;
+  nomDuPapa: string = 'JFD';
+  idBox: number = 0;
+
+  onItemSelection($event: number) {
+    this.idBox = $event; // Update la variable idBox (qui provient du composant enfant)
+    console.log('Selected box ID:', this.idBox);
+  }
+
+//////////////////////////////////////
+// src\app\enfant\enfant.component.ts
+//////////////////////////////////////
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-enfant',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './enfant.component.html',
+  styleUrl: './enfant.component.css'
+})
+export class EnfantComponent {
+  
+  titreComposantEnfant: string = 'component enfant';
+  @Input() estChecked: boolean = false;
+  @Input() nomDuPere: string = '';
+ 
+  @Output() selectedItemEvent = new EventEmitter<number>();
+  idBox: number = 0;
+ 
+  constructor() { } // Constructor is empty, but can be used for dependency injection if needed
+
+  selectBox(id: number) {
+    this.idBox = id;
+    this.selectedItemEvent.emit(id);
+  }
+}
+
+//////////////////////////////////////////
+// src\app\enfant\enfant.component.html
+//////////////////////////////////////////
+<h2>{{titreComposantEnfant}} works!</h2>
+
+<div>
+    
+    <p>Valeur de propriete estChecked (enfant) : {{estChecked}}</p>
+    
+    <p *ngIf="estChecked; else noChecked">Youppi tu aimes les pandas! (enfant)</p>
+    
+    <ng-template #noChecked>
+      <p>Non? Tu ne les aimes pas?! (enfant)</p>
+    </ng-template>
+</div>
+
+<div>
+    <p>Choix de 3 box (enfant):</p>
+    <button *ngFor="let id of [1, 2, 3]" (click)="selectBox(id)">
+      Box {{ id }}
+    </button>
+    <p>Valeur de la variable idBox: {{idBox}} (enfant)</p>
+</div>
+
+```
+
+
+
+
 ## Comment utiliser @Input()
 Use the @Input() decorator in a child component or directive to let Angular know that a property in that component can receive its value from its parent component. It helps to remember that the data flow is from the perspective of the child component. So an @Input() allows data to be input into the child component from the parent component.
 
