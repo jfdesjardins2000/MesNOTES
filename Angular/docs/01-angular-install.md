@@ -561,7 +561,7 @@ Consulter la page : **Dépôt pédagogique** (https://github.com/jfdesjardins200
 
 ---
 
-## Erreur possibles 
+## Gestion d'Erreurs possibles :
 
 Dans mon projet angular je rencontre cette erreur: Erreur critique : npm error code SELF_SIGNED_CERT_IN_CHAIN
 
