@@ -558,3 +558,49 @@ Consulter la page : **Dépôt pédagogique** (https://github.com/jfdesjardins200
 ---
 
 ## ✅ Tu es prêt à coder 🚀
+
+---
+
+## Erreur possibles 
+
+Dans mon projet angular je rencontre cette erreur: Erreur critique : npm error code SELF_SIGNED_CERT_IN_CHAIN
+
+✅ Solution recommandée (si possible) : corriger la chaîne de certificats
+Si tu es derrière un proxy d'entreprise avec des certificats auto-signés, demande à ton équipe TI :
+
+Le certificat racine de confiance (au format .crt ou .pem)
+
+Et ajoute-le manuellement à la configuration de npm via :
+
+
+```bash
+npm config set cafile "chemin/vers/ton/certificat.crt"
+```
+⚠️ Solution temporaire (non sécurisée, à utiliser avec précaution)
+Tu peux dire à npm d’ignorer les erreurs de certificat :
+
+```bash
+npm config set strict-ssl false
+```
+Cela désactive la vérification SSL. C'est pratique pour avancer, mais risqué en production ou sur des réseaux non sécurisés.
+
+🔁 Autre alternative : utiliser un registre npm sécurisé
+Si le problème vient d’un registre personnalisé (interne), tu peux forcer npm à utiliser le registre public :
+
+```bash
+npm config set registry https://registry.npmjs.org/
+```
+
+🧪 Pour tester temporairement une commande (sans changer la config globale)
+Tu peux faire :
+
+```bash
+NODE_TLS_REJECT_UNAUTHORIZED=0 npm install
+```
+Encore une fois : non recommandé à long terme, mais utile pour débloquer une situation.
+
+💡 Vérifie aussi :
+Ton fichier .npmrc (global ou local) — il pourrait contenir des réglages problématiques.
+
+Ton environnement réseau : un proxy, un antivirus ou un pare-feu peut altérer la chaîne de certificats.
+
