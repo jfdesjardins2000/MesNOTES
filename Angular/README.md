@@ -49,7 +49,7 @@ Voici les sections disponibles :
 
 
 ✅Liste d'extensions pour VSCode
-[vscode-extensions](./tools/list-extensions.txt)
+[vscode-extensions](../tools/list-extensions.txt)
 
 
  ✅ Activer la bonne version de Node via nvm: 
