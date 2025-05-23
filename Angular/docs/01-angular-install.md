@@ -53,8 +53,8 @@ cd mon-projet-angular
 
 par exemple, pour utiliser node v18.20.8
 ```bash
-nvm install 18.20.8
-nvm use 18.20.8
+nvm install 20.19.0
+nvm use 20.19.0
 ```
 ---
 
@@ -115,25 +115,25 @@ En résumé :
 
 ➡️ Il est lu par `npm install` pour installer toutes les librairies nécessaires.
 
-Editer le fichier pour ajouter les scripts suivants:
+Editer le fichier `pacjage.json` pour ajouter les scripts suivants:
 
 ```json
 {
-  "name": "essentials",
+  "name": "nom-du-projet",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "clean": "npx rimraf dist",
-    "build": "npx ng build",
-    "build:prod": "npx ng build --configuration production",
-    "start": "npx ng serve",    
-    "test": "npx ng test"
+    "clean": "rimraf dist",
+    "build": "ng build",
+    "build:prod": "ng build --configuration production",
+    "start": "ng serve",    
+    "test": "ng test"
   },
 ```
 **Note sur : [rimraf](https://www.npmjs.com/package/rimraf)**
 ```json
 "scripts": {
-  "clean": "npx rimraf dossier_à_supprimer"
+  "clean": "rimraf dossier_à_supprimer"
 }
 ```
 **clean**: Ce script utilise la librairie `rimraf` (ou `rm -rf` sous Linux/macOS) pour supprimer récursivement le contenu du dossier `dist/essentials`. Si rimraf n'est pas installé globalement ou localement, il faut l'**installer en local** avec :
@@ -148,9 +148,53 @@ Utiliser npx qui cherchera d'abord la version locale:
 
 2. Définir un script dans le fichier package.json
 
-3. Puis l'exécuter avec 
+3. Puis l'exécuter avec `npm run clean` -> `npm run build` -> `npm run start`
 
-`npm run clean`
+---
+
+🛠️ npx ng build
+* Commande directe vers Angular CLI :
+Elle utilise Angular CLI pour compiler l'application selon la configuration Angular (angular.json).
+* Usage typique :`npx ng build`
+* ou si Angular CLI est installé globalement : `ng build`
+* Personnalisable avec des options : `npx ng build --configuration=production`
+
+**Avantage** :
+Tu lances directement la commande CLI sans dépendre d'un script personnalisé dans le `package.json`.
+
+📦 npm run build
+* Commande qui exécute un script défini dans package.json :
+Exemple :
+```jsonc
+"scripts": {
+  "build": "ng build"
+}
+```
+ quand tu fais :
+`npm run build` 
+…tu exécutes en fait la commande définie (`ng build`).
+---
+
+**Avantage** :
+Tu peux personnaliser ce script. Exemple :
+```json
+"scripts": {
+  "build": "ng build --configuration production"
+}
+```
+
+⚖️ Résumé des différences
+
+En pratique, tu peux utiliser l’un ou l’autre selon ta préférence. Si tu veux un contrôle rapide en ligne de commande : npx ng build. Si tu veux des scripts réutilisables : npm run build.
+
+| Aspect                | `npx ng build`            | `npm run build`                             |
+| --------------------- | ------------------------- | ------------------------------------------- |
+| Appelle Angular CLI ? | Oui, directement          | Indirectement, via le script `package.json` |
+| Personnalisable ?     | Oui, en ligne de commande | Oui, via `package.json`                     |
+| Requiert script ?     | Non                       | Oui (défini dans `package.json`)            |
+| Plus flexible ?       | Pour un usage ponctuel    | Pour un usage régulier ou personnalisé      |
+
+
 
 
 ### ✅ `angular.json` : La Configuration du Projet Angular ###
@@ -428,9 +472,7 @@ Il :
 
 **À retenir :**
 * Il hérite des règles du tsconfig.json.
-
 * Il est centré sur le code applicatif Angular uniquement, pas les tests.
-
 * Il est utilisé quand tu fais :
 
 ```bash
@@ -474,7 +516,7 @@ npm run build ->
 # lorsque
 npm run start ->
   > essentials@0.0.1 start
-  > npx ng serve  
+  > ng serve  
 ```
 
 🟢 Tu devrais voir (quelque chose comme) : `Application bundle generation complete...`

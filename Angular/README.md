@@ -52,19 +52,58 @@ Voici les sections disponibles :
 [vscode-extensions](../tools/list-extensions.txt)
 
 
- ✅ Activer la bonne version de Node via nvm: 
+ ✅ Activer la bonne version de Node via NVM: 
 ```ps
 nvm install 18.20.8
 nvm use 18.20.8
 ```
+
+✅Quand on clone un projet Angular existant ?
+ 
+ Lorsqu'on récupère un projet Angular existant (par exemple, via Git) qui contient déjà un fichier `package.json`, la seule commande à exécuter est :
+ 
+ 1. Dans une fenêtre Terminal, 
+ 2. naviguer dans le dossier dans lequel se trouve le fichier `package.json`
+ 3. Entrer ensuite la commande:
+ ```bash
+ npm install
+ ```
+ Pourquoi juste `npm install` ?
+
+* Lecture de package.json : La commande npm install (sans aucun argument de paquet) lit le fichier `package.json`.
+* Installation des dependencies : cette commande installe tous les paquets listés sous la section `dependencies`.
+* Installation des devDependencies : Elle installe également tous les paquets listés sous la section `devDependencies`. C'est là que @angular/cli et tous les autres outils de développement nécessaires (comme @angular-devkit/build-angular, typescript, karma, etc.) seront installés.
+* Cohérence : `npm install` s'assure que toutes les dépendances du projet, y compris les outils de développement, sont installées aux versions spécifiées ou compatibles avec celles spécifiées dans `package.json`.
+
 ✅Favoriser `npx` car cela permet d’utiliser `ng` **sans installation globale**
+
+pour créer un nouveau projet angular avec une version spécifique
 ```ps
 npx @angular/cli@18 new nomprojet
 ```
 - Angular CLI cherche `angular.json` pour fonctionner
 - Avec une installation locale `node_modules/.bin` contient tous les exécutables locaux (dont `ng`, `npx`, `tsc`...)
 
+✅ Compiler le projet Angular
 
+Cette commande va exécuter le script dans `package.json build` qui va lancer
+```bash
+ npm run build 
+ ```
+qui vient de
+```json
+"scripts": {
+  "ng": "ng",
+  "start": "ng serve",
+  "build": "ng build",
+  // ...
+},
+```
+
+ ✅ Servir le projet dans un browser
+ ```bash
+ npm run start
+ ```
 
 ## 🧪 Commandes Angular utiles
 Ouvre la fenêtre Terminal
