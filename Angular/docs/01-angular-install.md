@@ -9,7 +9,7 @@
 
 1.	Va sur : https://github.com/coreybutler/nvm-windows/releases
 2.	Télécharge le nvm-setup.exe et installe 
-3.	Installation dans : C:\Users\desje13\AppData\Local\nvm
+3.	Installation dans : C:\Users\<*usr*>\AppData\Local\nvm
 
 ## NVM cheatsheet
 
