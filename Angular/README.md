@@ -47,6 +47,7 @@ Voici les sections disponibles :
 | `Ctrl + Click`        | Navigation vers définition (fichier/variable)    |
 | `Ctrl + B`            | Toggle sidebar (explorer)                        |
 
+Dans VS Code, le panneau "Go to Symbol in File" (`Ctrl + Shift + O`) utilise des préfixes spécifiques pour filtrer les types de symboles. `@:` Permet de regrouper les symboles par type (classes, fonctions, variables, etc.), ce qui peut être utile pour une vue d'ensemble.
 
 ✅Liste d'extensions pour VSCode
 [vscode-extensions](../tools/list-extensions.txt)
