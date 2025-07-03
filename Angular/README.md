@@ -40,14 +40,13 @@ Voici les sections disponibles :
 | `Ctrl + P`            | Aller à un fichier (`app.component.ts`, etc.)    |
 | `Ctrl + Tab`          | Aller à un fichier (`app.component.ts`, etc.)    |
 | `Ctrl+K, Ctrl+O`      | pour boucler au travers des fichier ts/html/scss d'un composant Angular|
-| `Ctrl + Shift + O`    | Aller à un symbole dans le fichier (méthodes)    |
+| `Ctrl + Shift + O`    | Récupérer les symboles dans le fichier (`@:` pour grouper par types de symboles.)    |
 | `Ctrl + T`            | Rechercher un symbole global (composant/service) |
 | `F12`                 | Aller à la définition                            |
 | `Alt + F12`           | Aperçu de la définition (inline)                 |
 | `Ctrl + Click`        | Navigation vers définition (fichier/variable)    |
 | `Ctrl + B`            | Toggle sidebar (explorer)                        |
 
-Dans VS Code, le panneau "Go to Symbol in File" (`Ctrl + Shift + O`) utilise des préfixes spécifiques pour filtrer les types de symboles. `@:` Permet de regrouper les symboles par type (classes, fonctions, variables, etc.), ce qui peut être utile pour une vue d'ensemble.
 
 ✅Liste d'extensions pour VSCode
 [vscode-extensions](../tools/list-extensions.txt)
