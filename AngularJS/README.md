@@ -1,6 +1,4 @@
-# Angular - mes notes
-
-AngularJS (https://angularjs.org/) 
+# AngularJS (https://angularjs.org/)
 
 AngularJS est un framework JavaScript open-source développé par Google, principalement utilisé pour créer des applications web dynamiques côté client (dans le navigateur).
 
