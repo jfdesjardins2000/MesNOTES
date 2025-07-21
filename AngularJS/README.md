@@ -35,15 +35,15 @@ Voici un petit exemple d'application AngularJS :
 
  ```
 
- # Projet AngularJS avec Node.js v10.13.0
+ # Projet AngularJS avec Node.js v16.20.2
 
-Ce guide décrit toutes les étapes nécessaires pour créer et exécuter un projet AngularJS localement avec Node.js **v10.13.0**, en utilisant une version compatible de `http-server`.
+Ce guide décrit toutes les étapes nécessaires pour créer et exécuter un projet AngularJS localement avec Node.js **v16.20.2**, en utilisant une version compatible de `live-server`.
 
 ---
 
 ## 📦 Prérequis
 
-- Node.js **v10.13.0** installé sur votre machine
+- Node.js **v16.20.2** installé sur votre machine
 - npm (inclus avec Node.js)
 
 ---
@@ -61,11 +61,11 @@ npm init -y
 ```
 ### 3. Installer AngularJS localement
 ```bash
-npm install angular
+npm install angular@1.8.3 --save-dev
 ```
-### 4. Installer une version compatible de http-server
+### 4. Installer Live Server localement
 ```bash
-npm install http-server@0.12.3 --save-dev
+npm install live-server@1.2.1 --save-dev
 ```
 ### 5. Créer les fichiers de base
 **index.html**
@@ -93,8 +93,24 @@ angular.module('monApp', [])
 ### 6. Ajouter un script de démarrage dans **package.json**
 Dans la section "scripts" :
 ```bash
-"scripts": {
-  "start": "http-server ."
+{
+  "name": "mon-projet-angularjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "1.8.3"
+  },
+  "devDependencies": {
+    "live-server": "1.2.1"
+  }
 }
 ```
 ### 7. Dans le dossier .vscode ajouter les fichiers **launch.json** et **tasks.json**
@@ -129,9 +145,12 @@ Dans la section "scripts" :
     ]
 }
 ```
-
-Ouvrir le navigateur à l'adresse:
+Lance le serveur (live-server)
+```bash
+npm start
+```
+et Ouvrir le navigateur à l'adresse:
 http://localhost:8080
 
-ou ouvrir une session de debugage: (Ctrl+Shft+D)
+ou ouvrir une session de debugage (F5): (Ctrl+Shft+D)
 
