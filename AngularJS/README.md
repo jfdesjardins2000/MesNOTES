@@ -11,30 +11,9 @@ Voici les points clés à connaître :
 * Injection de dépendances : Facilite la gestion des composants et services.
 * Templates dynamiques : Utilise des expressions dans le HTML pour afficher des données dynamiquement.
 
-📜 Exemple simple
-Voici un petit exemple d'application AngularJS :
 
-```html
-<!DOCTYPE html>
-<html ng-app="monApp">
-<head>
-  https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js
-</head>
-<body ng-controller="MonControleur">
-  <h1>{{ message }}</h1>
-  <input ng-model="message">
-</body>
-
-<script>
-  angular.module('monApp', [])
-    .controller('MonControleur', function($scope) {
-      $scope.message = "Bonjour AngularJS !";
-    });
-</script>
-</html>
-
- ```
-
+## Voici les sections disponibles : ##
 1. [Installation](docs/01-angularjs-install.md)
-2. [Data Binding et Directives](docs/02-data-binding-directives.md)
+2. [Les Modules en AngularJS](docs/02-angularjs-modules)
+3. [Data Binding et Directives](docs/03-data-binding-directives.md)
 

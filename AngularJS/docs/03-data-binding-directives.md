@@ -1,12 +1,109 @@
-# Les méthodes de liaison de données en Angular
+# AngularJS — Data Binding et Directives
 
- # A revoir avec GPT
+AngularJS fournit un système puissant de **liaison de données (data-binding)** et de **directives** qui permet de créer des interfaces utilisateurs dynamiques avec peu de code. 
+---
 
-Angular propose un système puissant de liaison de données (data binding) qui permet de connecter les données du composant TypeScript avec l'interface utilisateur HTML. Ce document explore les différentes méthodes disponibles et leurs cas d'utilisation.
+## 🔁 Data Binding (liaison de données)
 
-## Interpolation `{{ }}`
+La liaison de données en AngularJS permet de **synchroniser automatiquement** le modèle (JavaScript) et la vue (HTML).
 
-L'interpolation est la méthode la plus simple pour afficher des valeurs dynamiques dans le template HTML.
+### 🔹 Liaison unidirectionnelle (`{{ }}`)
+
+Elle permet d'afficher une valeur du modèle dans la vue :
+
+```html
+<p>{{ nom }}</p>
+```
+
+Dans le contrôleur :
+
+```javascript
+$scope.nom = "Jean";
+```
+
+### 🔹 Liaison bidirectionnelle (`ng-model`)
+
+Permet de lier un champ de formulaire à une variable du modèle. Toute modification se reflète des deux côtés.
+
+```html
+<input type="text" ng-model="nom">
+<p>Bonjour {{ nom }}</p>
+```
+
+---
+
+## 🧩 Directives AngularJS
+
+Les **directives** sont des attributs HTML spéciaux (ou balises) qui ajoutent des comportements dynamiques à vos éléments HTML.
+
+### 🔹 Directives intégrées
+
+| Directive     | Description |
+|---------------|-------------|
+| `ng-model`    | Lier une variable à un champ de formulaire |
+| `ng-bind`     | Afficher une valeur (équivalent à `{{ }}`) |
+| `ng-repeat`   | Répéter un élément pour chaque élément d'une liste |
+| `ng-if`       | Afficher un élément si une condition est vraie |
+| `ng-show` / `ng-hide` | Afficher ou masquer un élément dynamiquement |
+| `ng-click`    | Réagir à un clic de l'utilisateur |
+
+### 🔹 Exemple : `ng-repeat`
+
+```html
+<ul>
+  <li ng-repeat="fruit in fruits">{{ fruit }}</li>
+</ul>
+```
+
+Dans le contrôleur :
+
+```javascript
+$scope.fruits = ["Pomme", "Banane", "Mangue"];
+```
+
+---
+
+## 🔧 Exemple complet
+
+```html
+<!DOCTYPE html>
+<html ng-app="monApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    angular.module('monApp', [])
+      .controller('MainCtrl', function($scope) {
+        $scope.nom = "Alice";
+        $scope.fruits = ["Pomme", "Banane", "Mangue"];
+      });
+  </script>
+</head>
+<body ng-controller="MainCtrl">
+  <input ng-model="nom">
+  <h1>Bonjour {{ nom }} !</h1>
+
+  <ul>
+    <li ng-repeat="fruit in fruits">{{ fruit }}</li>
+  </ul>
+</body>
+</html>
+```
+
+---
+
+## ✅ Résumé
+
+| Concept             | But                                         |
+|---------------------|----------------------------------------------|
+| `{{ variable }}`    | Affiche une valeur du modèle dans la vue     |
+| `ng-model`          | Liaison bidirectionnelle                     |
+| `ng-repeat`         | Boucle sur un tableau                        |
+| `ng-click`          | Gérer un clic utilisateur                    |
+| `ng-if`, `ng-show`  | Contrôle d'affichage conditionnel            |
+
+---
+
+AngularJS vous permet de créer rapidement des interfaces dynamiques grâce à un système de directives puissantes et une liaison des données intuitive.
 
 
 
