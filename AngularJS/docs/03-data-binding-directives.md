@@ -283,3 +283,134 @@ setTimeout(function() {
 | Watcher            | Surveille un champ `$scope` pour détecter un changement |
 
 
+---
+
+# 📘 Directives AngularJS Courantes
+
+[Directive components in ng](https://docs.angularjs.org/api/ng/directive)
+
+Les **directives** dans AngularJS sont des attributs ou des éléments personnalisés qui permettent d'ajouter du comportement dynamique aux éléments HTML.
+
+---
+
+## 🔹 `ng-app`
+
+- **Rôle** : Initialise une application AngularJS.
+- **Utilisation** :
+  ```html
+  <html ng-app="monApp">
+  ```
+
+---
+
+## 🔹 `ng-model`
+
+- **Rôle** : Crée une liaison bidirectionnelle entre un champ HTML et une variable du `$scope`.
+- **Utilisation** :
+  ```html
+  <input ng-model="nom">
+  <p>Bonjour {{ nom }}</p>
+  ```
+
+---
+
+## 🔹 `ng-bind`
+
+- **Rôle** : Affiche une valeur du modèle dans le HTML (équivalent à `{{ }}`).
+- **Utilisation** :
+  ```html
+  <p ng-bind="nom"></p>
+  ```
+
+---
+
+## 🔹 `ng-repeat`
+
+- **Rôle** : Répète un élément HTML pour chaque élément d’une collection.
+- **Utilisation** :
+  ```html
+  <li ng-repeat="fruit in fruits">{{ fruit }}</li>
+  ```
+
+---
+
+## 🔹 `ng-if`
+
+- **Rôle** : Affiche ou supprime un élément du DOM selon une condition.
+- **Utilisation** :
+  ```html
+  <p ng-if="estVisible">Je suis visible</p>
+  ```
+
+---
+
+## 🔹 `ng-show` / `ng-hide`
+
+- **Rôle** : Affiche (`ng-show`) ou cache (`ng-hide`) un élément en utilisant `display: none`.
+- **Utilisation** :
+  ```html
+  <p ng-show="estConnecte">Bienvenue</p>
+  <p ng-hide="estConnecte">Veuillez vous connecter</p>
+  ```
+
+---
+
+## 🔹 `ng-click`
+
+- **Rôle** : Exécute une fonction lorsqu’un élément est cliqué.
+- **Utilisation** :
+  ```html
+  <button ng-click="incrementer()">+1</button>
+  ```
+
+---
+
+## 🔹 `ng-class`
+
+- **Rôle** : Ajoute dynamiquement une ou plusieurs classes CSS selon une condition.
+- **Utilisation** :
+  ```html
+  <p ng-class="{ actif: estActif }">Statut</p>
+  ```
+
+---
+
+## 🔹 `ng-init`
+
+- **Rôle** : Initialise des variables au chargement de la vue.
+- **Utilisation** :
+  ```html
+  <div ng-init="nombre=5"></div>
+  ```
+
+---
+
+## 🔹 `ng-submit`
+
+- **Rôle** : Gère la soumission d’un formulaire.
+- **Utilisation** :
+  ```html
+  <form ng-submit="soumettreFormulaire()">
+  ```
+
+---
+
+## ✅ Résumé
+
+| Directive    | Rôle                                      |
+|--------------|--------------------------------------------|
+| `ng-app`     | Initialise l'application AngularJS         |
+| `ng-model`   | Liaison bidirectionnelle                   |
+| `ng-bind`    | Affiche une valeur                         |
+| `ng-repeat`  | Répète un élément pour chaque item         |
+| `ng-if`      | Affiche ou non un élément (DOM)            |
+| `ng-show`    | Affiche un élément (`display: block`)      |
+| `ng-hide`    | Cache un élément (`display: none`)         |
+| `ng-click`   | Réagit à un clic                           |
+| `ng-class`   | Applique dynamiquement des classes CSS     |
+| `ng-init`    | Initialise des variables                   |
+| `ng-submit`  | Gère la soumission d’un formulaire         |
+
+---
+
+Les directives AngularJS permettent de créer des interfaces interactives et dynamiques en enrichissant le HTML standard avec des comportements réactifs.
