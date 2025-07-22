@@ -215,6 +215,10 @@ Le Digest Loop est le processus par lequel AngularJS :
 
 Ce cycle est appelé une **"boucle de digestion"** (digest loop) car il vérifie les modifications en boucle, jusqu’à ce que tous les modèles soient à jour.
 
+![angular-digest-cycle](../images/digest-cycle.png)
+
+
+
 ## 🔁 Comment ça fonctionne ?
 Exemple :
 ```html
