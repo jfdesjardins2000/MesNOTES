@@ -7,7 +7,7 @@ AngularJS fournit un système puissant de **liaison de données (data-binding)**
 
 La liaison de données en AngularJS permet de **synchroniser automatiquement** le modèle (JavaScript) et la vue (HTML).
 
-### 🔹 Liaison unidirectionnelle (`{{ }}`)
+### 🔹 Liaison unidirectionnelle (**interpolation**) (`{{ }}`)
 
 Elle permet d'afficher une valeur du modèle dans la vue :
 
@@ -21,7 +21,7 @@ Dans le contrôleur :
 $scope.nom = "Jean";
 ```
 
-### 🔹 Liaison bidirectionnelle (`ng-model`)
+### 🔹 Liaison bidirectionnelle (**Two Way Data Binding**) (`ng-model`)
 
 Permet de lier un champ de formulaire à une variable du modèle. Toute modification se reflète des deux côtés.
 
@@ -105,6 +105,8 @@ $scope.fruits = ["Pomme", "Banane", "Mangue"];
 
 AngularJS vous permet de créer rapidement des interfaces dynamiques grâce à un système de directives puissantes et une liaison des données intuitive.
 
+
+---
 
 
 # Comparaison entre `$scope` dans AngularJS et les objets équivalents en ASP.NET MVC
@@ -197,3 +199,83 @@ public ActionResult Index()
 | Liaison bidirectionnelle             | Oui              | Non                           |
 | Typage fort                          | Non              | Oui (avec `Model`)            |
 | Portée                               | Côté client      | Côté serveur                  |
+
+
+---
+
+## Angular Context ou Digest Loop
+Le **Digest Loop** (ou boucle de digestion) est un mécanisme central du **système de liaison de données (data-binding)** dans **AngularJS (v1.x)**. Il permet à AngularJS de **détecter automatiquement les changements** dans les données et de mettre à jour la vue en conséquence.
+
+## 🧠 Qu’est-ce que le Digest Loop ?
+Le Digest Loop est le processus par lequel AngularJS :
+
+* Parcourt toutes les expressions liées au $scope dans la vue (ex: {{ nom }})
+* Compare la valeur actuelle et la valeur précédente
+* Met à jour la vue si un changement est détecté
+
+Ce cycle est appelé une **"boucle de digestion"** (digest loop) car il vérifie les modifications en boucle, jusqu’à ce que tous les modèles soient à jour.
+
+## 🔁 Comment ça fonctionne ?
+Exemple :
+```html
+<p>{{ nom }}</p>
+<input ng-model="nom">
+```
+Lorsque vous modifiez la valeur du champ de saisie (`input`), AngularJS :
+
+* Met à jour `$scope.nom`
+* Lance un digest loop
+* Compare l’ancienne et la nouvelle valeur de `nom`
+* Met à jour le DOM (`<p>{{ nom }}</p>`) automatiquement
+
+## 🔍 Étapes du digest loop
+1. Le digest loop est déclenché (souvent par ng-click, ng-model, $http, etc.)
+2. AngularJS parcourt tous les watchers (fonctions qui surveillent des expressions)
+3. Pour chaque watcher :
+  * Évalue l'expression liée
+  * Compare à la valeur précédente
+  * Si différent : met à jour la vue et marque le digest comme `"dirty"`
+4. Le cycle recommence jusqu’à ce qu’aucun changement ne soit détecté
+5. Le loop s’arrête après **10 cycles max** (sinon : erreur `10 $digest() iterations reached`)
+
+## ⚠️ Important : $scope.$digest() vs $scope.$apply()
+| Méthode            | Description                                          |
+| ------------------ | ---------------------------------------------------- |
+| `$scope.$digest()` | Lance la boucle **dans le scope courant uniquement** |
+| `$scope.$apply()`  | Lance un digest global **à partir de `$rootScope`**  |
+
+## 🔥 Que surveille AngularJS ?
+AngularJS surveille les expressions dans :
+
+* {{ expressions }}
+* ng-model
+* ng-show, ng-hide
+* ng-class
+* Etc.
+
+**Mais ne surveille pas automatiquement** les changements faits **hors d’Angular**, comme dans un `setTimeout`, `eventListener` natif, ou une lib jQuery.
+
+➡️ Dans ces cas-là, il faut envelopper le code dans `$scope.$apply()` pour que le digest loop soit déclenché.
+
+## 🛠️ Exemple manuel
+```javascript
+setTimeout(function() {
+  $scope.nom = "Nouveau Nom";
+  $scope.$apply(); // Indique à AngularJS de lancer un digest
+}, 1000);
+```
+
+## 📉 Problèmes potentiels
+* **Performance** : trop de watchers = digest loop lent
+* **Erreurs silencieuses** si on oublie `$apply()`
+* **Boucle infinie** si les valeurs ne se stabilisent pas (`10 digest iterations reached`)
+
+## ✅ Résumé
+| Élément            | Rôle                                                    |
+| ------------------ | ------------------------------------------------------- |
+| Digest Loop        | Met à jour la vue si les données changent               |
+| `$scope.$digest()` | Lance une vérification dans un scope                    |
+| `$scope.$apply()`  | Lance une vérification globale                          |
+| Watcher            | Surveille un champ `$scope` pour détecter un changement |
+
+
