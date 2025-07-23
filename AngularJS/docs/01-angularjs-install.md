@@ -1,4 +1,4 @@
-# Installation
+# 01 - Installation
 # Projet AngularJS avec Node.js v16.20.2
 
 Ce guide décrit toutes les étapes nécessaires pour créer et exécuter un projet AngularJS localement avec Node.js **v16.20.2**, en utilisant une version compatible de `live-server`.

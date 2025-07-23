@@ -1,4 +1,8 @@
-# 🧩 Services AngularJS - Guide Complet
+# 04 - 🧩 Services
+
+* [/ Developer Guide/ Services](https://docs.angularjs.org/guide/services)
+* [/ API Reference/ ng/ service components in ng](https://docs.angularjs.org/api/ng/service)
+
 
 ## Introduction aux Services
 
@@ -14,7 +18,6 @@ Les services dans AngularJS sont des objets singleton qui fournissent des foncti
 
 ## Services Built-in les Plus Utilisés
 
-[Service components in ng](https://docs.angularjs.org/api/ng/service)
 
 ### 1. **$http** - Service de Requêtes HTTP
 
@@ -526,7 +529,105 @@ describe('UserService', function() {
 
 ---
 
-## Récapitulatif
+# ⚙️ AngularJS – Création de Service Custom
+
+Dans AngularJS, un **service custom** est un service que vous créez vous-même pour répondre aux besoins spécifiques de votre application. Ces services sont des singletons injectés par Angular via l'injection de dépendances.
+
+---
+
+## 🧠 Pourquoi créer un service custom ?
+
+- Centraliser des règles métiers (ex: calculs, transformations).
+- Réutiliser du code dans plusieurs contrôleurs, directives ou composants.
+- Accéder à des API ou gérer des données partagées.
+
+---
+
+## 🧱 Exemple : Créer un Service de gestion d’utilisateurs
+
+### 1. Créer le service
+
+```javascript
+angular.module('monApp', [])
+  .service('UtilisateurService', function() {
+    var utilisateurs = [];
+
+    this.ajouter = function(nom) {
+      utilisateurs.push({ nom: nom });
+    };
+
+    this.lister = function() {
+      return utilisateurs;
+    };
+
+    this.vider = function() {
+      utilisateurs = [];
+    };
+  });
+```
+
+---
+
+### 2. Utiliser le service dans un contrôleur
+
+```javascript
+angular.module('monApp')
+  .controller('UtilisateurCtrl', function($scope, UtilisateurService) {
+    $scope.nom = "";
+
+    $scope.ajouterUtilisateur = function() {
+      UtilisateurService.ajouter($scope.nom);
+      $scope.nom = "";
+    };
+
+    $scope.getUtilisateurs = function() {
+      return UtilisateurService.lister();
+    };
+
+    $scope.viderUtilisateurs = function() {
+      UtilisateurService.vider();
+    };
+  });
+```
+
+---
+
+### 3. Exemple HTML
+
+```html
+<div ng-controller="UtilisateurCtrl">
+  <input type="text" ng-model="nom" placeholder="Nom">
+  <button ng-click="ajouterUtilisateur()">Ajouter</button>
+  <button ng-click="viderUtilisateurs()">Vider</button>
+
+  <ul>
+    <li ng-repeat="u in getUtilisateurs()">{{u.nom}}</li>
+  </ul>
+</div>
+```
+
+---
+
+## 🧰 Bonnes pratiques
+
+- Un service ne devrait **pas manipuler le DOM**.
+- Garder les responsabilités **simples et bien définies**.
+- Préférer les services aux contrôleurs pour la logique métier complexe.
+
+---
+
+## ✅ Résumé
+
+| Élément                | But                                      |
+|------------------------|-------------------------------------------|
+| `service()`            | Crée un service custom (fonction constructeur) |
+| `factory()`            | Crée un service avec une fonction retournant un objet |
+| Réutilisation          | Oui, via injection de dépendances         |
+| Scope de vie           | Singleton (instancié une seule fois)      |
+
+---
+
+## Récapitulatif des Services AngularJS 
 
 Les services AngularJS sont essentiels pour :
 - **$http** : Requêtes AJAX et communication avec APIs
@@ -538,3 +639,6 @@ Les services AngularJS sont essentiels pour :
 - **$window/$document** : Accès aux objets globaux du navigateur
 
 Utilisez ces services pour créer des applications robustes et maintenables !
+
+Un service custom bien conçu rend votre application **plus modulaire**, **réutilisable** et **testable**.
+

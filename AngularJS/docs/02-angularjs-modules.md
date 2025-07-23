@@ -1,4 +1,7 @@
-# Les Modules en AngularJS
+# 02 - Modules
+
+* [/ Developer Guide/ Modules](https://docs.angularjs.org/guide/module)
+* [/ API Reference/ ng/ type components in ng/ angular.Module](https://docs.angularjs.org/api/ng/type/angular.Module)
 
 Les **modules AngularJS** sont un concept fondamental dans AngularJS (version 1.x). Ils servent à organiser votre application en différentes parties logiques — ce qui facilite la lisibilité, la maintenance et la réutilisation du code.
 

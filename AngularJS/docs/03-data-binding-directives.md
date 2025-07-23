@@ -1,4 +1,11 @@
-# AngularJS — Data Binding et Directives
+# 03 - Data Binding et Directives
+
+* [/ Developer Guide/ Data Binding](https://docs.angularjs.org/guide/databinding)
+* [/ Developer Guide/ Directives](https://docs.angularjs.org/guide/directive)
+* [/ API Reference/ ng/ directive ](https://docs.angularjs.org/api/ng/directive)
+* [Two-way Data Binding](https://docs.angularjs.org/tutorial/step_06)
+
+
 
 AngularJS fournit un système puissant de **liaison de données (data-binding)** et de **directives** qui permet de créer des interfaces utilisateurs dynamiques avec peu de code. 
 ---

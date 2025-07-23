@@ -14,7 +14,8 @@ Voici les points clés à connaître :
 
 ## Voici les sections disponibles : ##
 1. [Installation](docs/01-angularjs-install.md)
-2. [Les Modules en AngularJS](docs/02-angularjs-modules)
+2. [Les Modules en AngularJS](docs/02-angularjs-modules.md)
 3. [Data Binding et Directives](docs/03-data-binding-directives.md)
 4. [Service components in ng](docs/04-service-components.md)
+5. [Routing, Multiple Controllers et Views](docs/05-routing-multiple-controllers-views.md)
 
