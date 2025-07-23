@@ -492,10 +492,194 @@ Bonjour Marie!
 
 | Élément        | Description |
 |----------------|-------------|
-| `restrict: 'E'`| Utilisation sous forme de balise HTML |
+| `restrict: 'E'`| Utilisation sous forme de balise HTML (element names (`E`), attributes (`A`), class names (`C`), and comments (`M`)) |
 | `template`     | HTML injecté à la place de la directive |
 | `scope`        | Isolé, avec liaison de texte statique via `@` |
 
 Cette directive montre comment encapsuler du HTML réutilisable avec une logique simple.
 
+# 🎯 AngularJS – L'option `restrict` dans les Directives
+
+L'option `restrict` détermine **comment une directive AngularJS peut être utilisée** dans le code HTML.
+
 ---
+
+## 🧩 Valeurs possibles
+
+| Valeur | Type de correspondance   | Exemple d’utilisation dans HTML                        |
+|--------|---------------------------|---------------------------------------------------------|
+| `'A'`  | Attribut (`Attribute`)    | `<div ma-directive></div>`                             |
+| `'E'`  | Élément (`Element`)       | `<ma-directive></ma-directive>`                        |
+| `'C'`  | Classe (`Class`)          | `<div class="ma-directive"></div>`                     |
+| `'M'`  | Commentaire (`Comment`)   | `<!-- directive: ma-directive -->`                     |
+
+---
+
+## ⚙️ Exemple avec `'AEC'`
+
+```javascript
+app.directive('maDirective', function() {
+  return {
+    restrict: 'AEC',
+    template: '<p>Directive affichée.</p>'
+  };
+});
+```
+
+### 🔽 HTML compatible
+
+```html
+<!-- En tant qu'attribut -->
+<div ma-directive></div>
+
+<!-- En tant qu'élément -->
+<ma-directive></ma-directive>
+
+<!-- En tant que classe -->
+<div class="ma-directive"></div>
+```
+
+---
+
+## 🧠 Remarques importantes
+
+- Si tu **n’indiques pas** l’option `restrict`, AngularJS applique **par défaut `'EA'`** (élément et attribut).
+- `'M'` (commentaire) est **rarement utilisé**.
+- Tu peux **combiner plusieurs lettres** pour permettre plusieurs formes.
+
+---
+
+Utiliser correctement `restrict` permet de rendre tes directives **flexibles** et **faciles à intégrer** dans différents contextes HTML.
+
+
+
+---
+# 🔒 AngularJS – Directives avec Scope Isolé
+
+L'isolation du scope dans une directive AngularJS permet d'encapsuler complètement la logique et l'affichage, sans interférence avec le scope parent.
+
+---
+
+## 🎯 Pourquoi isoler le scope ?
+
+- Pour créer des composants **réutilisables**.
+- Pour **éviter les conflits** entre variables du parent et celles de la directive.
+- Pour **contrôler** les données transmises à la directive.
+
+---
+
+## 🔗 1. Binding par attribut (`@`) – Texte
+
+### HTML
+```html
+<salutation nom="Jean"></salutation>
+```
+
+### JS
+```javascript
+app.directive('salutation', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      nom: '@'
+    },
+    template: '<p>Bonjour {{nom}} !</p>'
+  };
+});
+```
+
+---
+
+## 🔁 2. Binding bidirectionnel (`=`) – Objet ou variable
+
+### HTML
+```html
+<compteur valeur="compte"></compteur>
+```
+
+### JS
+```javascript
+app.directive('compteur', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      valeur: '='
+    },
+    template: `
+      <button ng-click="valeur = valeur + 1">+1</button>
+      <p>Valeur: {{valeur}}</p>
+    `
+  };
+});
+```
+
+---
+
+## 🧪 3. Binding fonction (`&`) – Exécution de méthode
+
+### HTML
+```html
+<alerteur action="envoyerAlerte()"></alerteur>
+```
+
+### JS
+```javascript
+app.directive('alerteur', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      action: '&'
+    },
+    template: '<button ng-click="action()">Alerter</button>'
+  };
+});
+```
+
+---
+
+## 🧩 Exemple combiné des trois types
+
+### Directive JS
+```javascript
+app.directive('maDirective', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      titre: '@',
+      compteur: '=',
+      callback: '&'
+    },
+    template: `
+      <h3>{{titre}}</h3>
+      <p>Valeur: {{compteur}}</p>
+      <button ng-click="compteur = compteur + 1">Incrémenter</button>
+      <button ng-click="callback()">Exécuter</button>
+    `
+  };
+});
+```
+
+### Utilisation HTML
+```html
+<ma-directive titre="Bonjour"
+              compteur="compte"
+              callback="maFonction()">
+</ma-directive>
+```
+
+---
+
+## 📌 Récapitulatif des types de bindings
+
+| Type   | Syntaxe | Description                          |
+|--------|---------|--------------------------------------|
+| Texte  | `@`     | Transmet une **valeur textuelle**    |
+| Objet  | `=`     | **Liaison bidirectionnelle**         |
+| Action | `&`     | Permet **d'appeler une fonction**    |
+
+---
+
+Ce système est au cœur du développement de composants AngularJS bien structurés et modulaires.
+
+
+
