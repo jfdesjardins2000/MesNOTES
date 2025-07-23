@@ -16,4 +16,5 @@ Voici les points clés à connaître :
 1. [Installation](docs/01-angularjs-install.md)
 2. [Les Modules en AngularJS](docs/02-angularjs-modules)
 3. [Data Binding et Directives](docs/03-data-binding-directives.md)
+4. [Service components in ng](docs/04-service-components.md)
 
