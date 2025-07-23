@@ -1,9 +1,11 @@
-# 03 - Data Binding et Directives
+# 03 - Scopes, Data Binding et Directives
 
+* [/ Developer Guide/ Scopes](https://docs.angularjs.org/guide/scope)
 * [/ Developer Guide/ Data Binding](https://docs.angularjs.org/guide/databinding)
 * [/ Developer Guide/ Directives](https://docs.angularjs.org/guide/directive)
 * [/ API Reference/ ng/ directive ](https://docs.angularjs.org/api/ng/directive)
 * [Two-way Data Binding](https://docs.angularjs.org/tutorial/step_06)
+
 
 
 
@@ -117,6 +119,8 @@ AngularJS vous permet de créer rapidement des interfaces dynamiques grâce à u
 
 
 # Comparaison entre `$scope` dans AngularJS et les objets équivalents en ASP.NET MVC
+
+
 
 Dans **AngularJS**, on utilise souvent `$scope` pour lier des données entre le contrôleur et la vue.
 
@@ -421,3 +425,77 @@ Les **directives** dans AngularJS sont des attributs ou des éléments personnal
 ---
 
 Les directives AngularJS permettent de créer des interfaces interactives et dynamiques en enrichissant le HTML standard avec des comportements réactifs.
+
+---
+# 📘 AngularJS – Exemple Simple de Directive Custom
+
+Voici un exemple simple d'une directive personnalisée en AngularJS nommée `bonjour`.
+
+---
+
+## 🧱 Objectif
+
+Créer une directive `bonjour` qui affiche un message personnalisé en fonction d’un attribut.
+
+---
+
+## 🔤 Code JavaScript
+
+```javascript
+var app = angular.module('monApp', []);
+
+app.directive('bonjour', function() {
+  return {
+    restrict: 'E', // 'E' signifie que la directive est utilisée comme un élément HTML
+    template: '<h3>Bonjour {{prenom}}!</h3>',
+    scope: {
+      prenom: '@'
+    }
+  };
+});
+```
+
+---
+
+## 🖼️ Code HTML
+
+```html
+<!DOCTYPE html>
+<html ng-app="monApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemple Directive</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <bonjour prenom="Jean"></bonjour>
+  <bonjour prenom="Marie"></bonjour>
+
+</body>
+</html>
+```
+
+---
+
+## 📝 Résultat attendu
+
+```
+Bonjour Jean!
+Bonjour Marie!
+```
+
+---
+
+## 💡 Explication
+
+| Élément        | Description |
+|----------------|-------------|
+| `restrict: 'E'`| Utilisation sous forme de balise HTML |
+| `template`     | HTML injecté à la place de la directive |
+| `scope`        | Isolé, avec liaison de texte statique via `@` |
+
+Cette directive montre comment encapsuler du HTML réutilisable avec une logique simple.
+
+---
